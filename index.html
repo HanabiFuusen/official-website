@@ -24,17 +24,37 @@
         </div>
     </nav>
 
-    <!-- 主視覺區 -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">創造令人難忘的<br>遊戲體驗</h1>
-            <p class="hero-subtitle">我們是一群熱愛遊戲的開發者，致力於打造獨特且富有創意的遊戲作品</p>
-            <div class="hero-buttons">
-                <a href="games.html" class="btn btn-primary">探索遊戲</a>
-                <a href="contact.html" class="btn btn-secondary">聯絡我們</a>
+    <!-- 首頁封面預覽 -->
+    <section class="cover-preview">
+        <div class="cover-track">
+            <a href="game01.html" class="cover-slide active" aria-label="帶我去地下城吧！！">
+                <img src="images/game01_cover.jpg" alt="帶我去地下城吧！！" class="cover-image">
+                <div class="cover-overlay"></div>
+                <div class="cover-info">
+                    <p class="cover-tag">冒險 / 地下城</p>
+                    <h1 class="cover-title">帶我去地下城吧！！</h1>
+                    <span class="cover-cta">了解更多 →</span>
+                </div>
+            </a>
+            <div class="cover-slide coming-soon" aria-label="敬請期待">
+                <div class="cover-overlay"></div>
+                <div class="cover-info">
+                    <p class="cover-tag">NEXT</p>
+                    <h1 class="cover-title">敬請期待！</h1>
+                    <span class="cover-cta">更多精彩遊戲即將推出</span>
+                </div>
             </div>
         </div>
-        <div class="hero-particles"></div>
+        <div class="cover-dots">
+            <button class="cover-dot active" data-slide="0">
+                <span class="cover-dot-indicator"></span>
+                <span class="cover-dot-label">帶我去地下城吧！！</span>
+            </button>
+            <button class="cover-dot" data-slide="1">
+                <span class="cover-dot-indicator"></span>
+                <span class="cover-dot-label">敬請期待！</span>
+            </button>
+        </div>
     </section>
 
     <!-- 頁尾 -->

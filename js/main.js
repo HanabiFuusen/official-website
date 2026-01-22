@@ -45,24 +45,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ===== 表單提交處理 =====
 const contactForm = document.querySelector('.contact-form');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // 取得表單資料
-    const formData = new FormData(contactForm);
-    const name = contactForm.querySelector('input[type="text"]').value;
-    const email = contactForm.querySelector('input[type="email"]').value;
-    const message = contactForm.querySelector('textarea').value;
-    
-    // 這裡可以加入實際的表單提交邏輯
-    // 例如使用 fetch 發送到後端 API
-    
-    // 顯示成功訊息
-    alert('感謝您的訊息！我們會盡快回覆您。');
-    
-    // 清空表單
-    contactForm.reset();
-});
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // 取得表單資料
+        const formData = new FormData(contactForm);
+        const name = contactForm.querySelector('input[type="text"]').value;
+        const email = contactForm.querySelector('input[type="email"]').value;
+        const message = contactForm.querySelector('textarea').value;
+        
+        // 這裡可以加入實際的表單提交邏輯
+        // 例如使用 fetch 發送到後端 API
+        
+        // 顯示成功訊息
+        alert('感謝您的訊息！我們會盡快回覆您。');
+        
+        // 清空表單
+        contactForm.reset();
+    });
+}
 
 // ===== 滾動動畫 =====
 const observerOptions = {
@@ -138,6 +140,88 @@ function createParticles() {
 
 // 初始化粒子效果
 createParticles();
+
+// ===== 封面輪播控制 =====
+function initCoverSlider() {
+    const coverTrack = document.querySelector('.cover-track');
+    const coverDots = document.querySelectorAll('.cover-dot');
+    const coverSlides = document.querySelectorAll('.cover-slide');
+    
+    if (!coverTrack || !coverDots.length || !coverSlides.length) return;
+    
+    // 計算單個 slide 寬度
+    function getSlideWidth() {
+        return coverTrack.offsetWidth;
+    }
+    
+    // 滾動到指定 slide
+    function scrollToSlide(index) {
+        const slideWidth = getSlideWidth();
+        coverTrack.scrollTo({
+            left: slideWidth * index,
+            behavior: 'smooth'
+        });
+        
+        // 更新 active 狀態
+        coverDots.forEach((d, i) => {
+            d.classList.toggle('active', i === index);
+        });
+    }
+    
+    // 點擊 dot 滾動到對應 slide
+    coverDots.forEach((dot) => {
+        dot.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const slideIndex = parseInt(dot.getAttribute('data-slide')) || 0;
+            scrollToSlide(slideIndex);
+        });
+    });
+    
+    // 監聽滾動更新 active dot
+    let scrollTimeout;
+    coverTrack.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const slideWidth = getSlideWidth();
+            const currentIndex = Math.round(coverTrack.scrollLeft / slideWidth);
+            
+            coverDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }, 50);
+    });
+    
+    // 拖曳滑動支援
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    
+    coverTrack.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - coverTrack.offsetLeft;
+        scrollLeft = coverTrack.scrollLeft;
+    });
+    
+    coverTrack.addEventListener('mouseleave', () => {
+        isDown = false;
+    });
+    
+    coverTrack.addEventListener('mouseup', () => {
+        isDown = false;
+    });
+    
+    coverTrack.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - coverTrack.offsetLeft;
+        const walk = (x - startX) * 2;
+        coverTrack.scrollLeft = scrollLeft - walk;
+    });
+}
+
+// 初始化封面輪播
+initCoverSlider();
 
 // ===== 頁面載入完成 =====
 window.addEventListener('load', () => {
