@@ -1,0 +1,112 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+// Game data - in a real app, this could come from a CMS or database
+const games: Record<string, { 
+  title: string
+  description: string
+  longDescription: string
+  image: string
+  tags: string[]
+  features: string[]
+  releaseStatus: string
+}> = {
+  game01: {
+    title: '帶我去地下城吧！！',
+    description: '一款刺激的地下城冒險遊戲',
+    longDescription: '《帶我去地下城吧！！》是一款結合動作與策略的地下城探索遊戲。玩家將扮演勇敢的冒險者，深入神秘莫測的地下迷宮，面對各種強大的怪物和機關陷阱。在這個充滿危險與寶藏的世界中，你需要運用智慧和勇氣，才能成為真正的地下城征服者！',
+    image: '/images/game01_cover.jpg',
+    tags: ['冒險', '地下城', 'RPG'],
+    features: [
+      '隨機生成的地下城關卡，每次遊玩都有新體驗',
+      '豐富的角色成長系統與技能樹',
+      '多樣化的武器裝備收集',
+      '具挑戰性的 Boss 戰鬥',
+      '精美的像素藝術風格',
+    ],
+    releaseStatus: '開發中',
+  },
+}
+
+const { id } = Astro.params
+const game = id ? games[id] : null
+
+if (!game) {
+  return Astro.redirect('/games')
+}
+---
+
+<Layout title={game.title} description={game.description}>
+  <!-- Hero Section -->
+  <section class="relative min-h-[70vh] pt-16">
+    <div class="absolute inset-0">
+      <img 
+        src={game.image}
+        alt={game.title}
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/70 to-gray-950/30" />
+    </div>
+
+    <div class="relative h-full min-h-[70vh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-end pb-20">
+      <div class="max-w-3xl">
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          {game.tags.map((tag) => (
+            <span class="px-3 py-1 text-sm font-medium bg-pink-500/20 text-pink-400 rounded-full backdrop-blur-sm">
+              {tag}
+            </span>
+          ))}
+          <span class="px-3 py-1 text-sm font-medium bg-yellow-500/20 text-yellow-400 rounded-full backdrop-blur-sm">
+            {game.releaseStatus}
+          </span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+          {game.title}
+        </h1>
+
+        <!-- Description -->
+        <p class="text-xl text-gray-300 leading-relaxed">
+          {game.longDescription}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-white mb-12 text-center">
+        遊戲特色
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {game.features.map((feature, index) => (
+          <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700 hover:border-pink-500/50 transition-colors">
+            <div class="w-10 h-10 bg-pink-500/20 rounded-lg flex items-center justify-center text-pink-400 font-bold mb-4">
+              {index + 1}
+            </div>
+            <p class="text-gray-300">{feature}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Games -->
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <a 
+        href="/games"
+        class="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+        </svg>
+        返回遊戲列表
+      </a>
+    </div>
+  </section>
+</Layout>
