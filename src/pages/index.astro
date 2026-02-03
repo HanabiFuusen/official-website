@@ -50,9 +50,9 @@ const otherGames = [
 
 <Layout title="花火風船">
   <!-- Hero Section - 大型特色遊戲區域 -->
-  <section class="pt-36 pb-8 mx-[150px]">
+  <section class="pt-36 pb-8 max-w-4xl mx-auto">
     <!-- 16:9 遊戲封面輪播 - 外層容器包含箭頭 -->
-    <div class="relative max-w-4xl mx-auto px-20 overflow-hidden">
+    <div class="relative max-w-4xl mx-auto px-5 overflow-hidden">
       <!-- 輪播視窗 - 堆疊式卡片 -->
       <div id="carousel-container" class="relative aspect-video ">
         {featuredGames.map((game, index) => (
@@ -113,7 +113,7 @@ const otherGames = [
       <!-- 左右切換按鈕 - 在外面 -->
       <button 
         id="carousel-prev"
-        class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-100 text-gray-800 p-4 rounded-full shadow-lg transition-all hover:scale-110"
+        class="absolute left-1 top-1/2 -translate-y-1/2 z-40 bg-white hover:bg-gray-100 text-gray-800 p-4 rounded-full shadow-lg transition-all hover:scale-110"
         aria-label="上一個"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,7 +122,7 @@ const otherGames = [
       </button>
       <button 
         id="carousel-next"
-        class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-100 text-gray-800 p-4 rounded-full shadow-lg transition-all hover:scale-110"
+        class="absolute right-1 top-1/2 -translate-y-1/2 z-40 bg-white hover:bg-gray-100 text-gray-800 p-4 rounded-full shadow-lg transition-all hover:scale-110"
         aria-label="下一個"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
