@@ -1,0 +1,236 @@
+---
+interface Props {
+  title: string
+  description: string
+  devDetail?: string
+  image: string
+  href: string
+  platforms?: ('steam' | 'switch')[]
+  leftMemoText?: string
+  leftMemoColor?: string
+  rightMemoText?: string
+  rightMemoColor?: string
+  r18?: boolean
+  haveDetailPage?: boolean
+}
+
+const { title, description, devDetail, image, href, platforms = [], leftMemoText, leftMemoColor = '#FFE680', rightMemoText, rightMemoColor = '#FFE680', r18: showR18 = false, haveDetailPage = false } = Astro.props
+---
+
+{haveDetailPage ? (
+<a href={href} class="group block relative">
+  <!-- 右側 Memo 便條紙 -->
+  {rightMemoText && (
+    <div 
+      class="absolute -top-2 -right-2 z-10 px-3 py-1.5 text-xs font-bold text-gray-800 shadow-md transform border-2 border-white rounded-lg"
+      style={`
+          background-color: ${rightMemoColor}; 
+          box-shadow: 0 0 0 3px ${rightMemoColor}, 5px 5px 0px 2px rgba(255, 0, 0, 1);`}
+    >
+      {rightMemoText}
+    </div>
+  )}
+
+  <article class="bg-gray-100 rounded-2xl overflow-hidden border border-gray-300 hover:border-blue-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/10 relative flex flex-col"
+     style="box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);">
+
+    <!-- Image -->
+    <div class="relative aspect-[16/9] overflow-hidden">
+      <img 
+        src={image} 
+        alt={title}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-gray-100 via-transparent to-transparent opacity-60" />
+      
+      <!-- 左側 Memo 便條紙 -->
+      {leftMemoText && (
+        <div 
+          class="absolute bottom-0 left-0 z-10 px-3 py-1.5 text-xs font-bold text-gray-800 shadow-md transform"
+          style={`background-color: ${leftMemoColor}; box-shadow: 3px -3px 5px 0px rgba(0, 0, 0, .2);`}
+        >
+          {leftMemoText}
+        </div>
+      )}
+      
+      <!-- R18 圖標 -->
+      {showR18 && (
+        <img 
+          src="/images/icon/ja_r18.png" 
+          alt="R18" 
+          class="absolute bottom-2 right-4 w-12 h-12 z-10"
+        />
+      )}
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1 px-6 py-4 flex flex-col">
+      <!-- 1. Title and Platform Logos -->
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="text-2xl font-bold text-gray-900 group-hover:text-blue-500 transition-colors">
+          {title}
+        </h3>
+        
+        {platforms.length > 0 && (
+          <div class="flex gap-4">
+            {platforms.includes('steam') && (
+              <!-- Steam Logo -->
+              <div class="inline-flex flex-col items-center gap-0.5">
+                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm9.423-11.375c-1.661 0-3.01 1.35-3.01 3.012s1.347 3.011 3.01 3.011 3.01-1.349 3.01-3.01-1.346-3.012-3.01-3.012zm0 4.772c-.974 0-1.762-.79-1.762-1.762s.789-1.763 1.762-1.763c.971 0 1.762.791 1.762 1.763s-.79 1.762-1.762 1.762z"/>
+                </svg>
+                <span class="text-gray-700 text-[10px] font-medium">Steam</span>
+              </div>
+            )}
+
+            {platforms.includes('switch') && (
+              <!-- Switch Logo -->
+              <div class="inline-flex flex-col items-center gap-0.5">
+                <img src="/images/icon/switch-logo.svg" alt="Switch" class="w-8 h-8" />
+                <span class="text-gray-700 text-[10px] font-medium">Switch</span>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      <!-- 2. 分隔線 -->
+      <hr class="border-gray-300 mb-3" />
+
+      <!-- 3. Description -->
+      <p class="text-gray-600 text-sm mb-3">
+        {description}
+      </p>
+
+      <!-- 4. 空格 -->
+
+      <!-- 5. DevDetail -->
+      {devDetail && (
+        <p class="text-gray-500 text-xs mb-3" set:html={devDetail}>
+        </p>
+      )}
+
+      <!-- 6. 空格 -->
+
+      <!-- 7. R18 Warning -->
+      {showR18 && (
+        <div class="mb-3 px-3 py-2 bg-red-100 border border-red-300 rounded-lg">
+          <p class="text-red-700 text-xs font-bold text-center">
+            🔞 未滿18歳禁止
+          </p>
+        </div>
+      )}
+
+      <!-- 8. 空格 -->
+    </div>
+  </article>
+</a>
+) : (
+<div class="group block relative cursor-default">
+  <!-- 右側 Memo 便條紙 -->
+  {rightMemoText && (
+    <div 
+      class="absolute -top-2 -right-2 z-10 px-3 py-1.5 text-xs font-bold text-gray-800 shadow-md transform border-2 border-white rounded-lg"
+      style={`
+          background-color: ${rightMemoColor}; 
+          box-shadow: 0 0 0 3px ${rightMemoColor}, 5px 5px 0px 2px rgba(255, 0, 0, 1);`}
+    >
+      {rightMemoText}
+    </div>
+  )}
+
+  <article class="bg-gray-100 rounded-2xl overflow-hidden border border-gray-300 relative flex flex-col"
+     style="box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);">
+
+    <!-- Image -->
+    <div class="relative aspect-[21/9] overflow-hidden">
+      <img 
+        src={image} 
+        alt={title}
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-gray-100 via-transparent to-transparent opacity-60" />
+      
+      <!-- 左側 Memo 便條紙 -->
+      {leftMemoText && (
+        <div 
+          class="absolute bottom-0 left-0 z-10 px-3 py-1.5 text-xs font-bold text-gray-800 shadow-md transform"
+          style={`background-color: ${leftMemoColor}; box-shadow: 3px -3px 5px 0px rgba(0, 0, 0, .2);`}
+        >
+          {leftMemoText}
+        </div>
+      )}
+      
+      <!-- R18 圖標 -->
+      {showR18 && (
+        <img 
+          src="/images/icon/ja_r18.png" 
+          alt="R18" 
+          class="absolute bottom-2 right-6 w-12 h-12 z-10"
+        />
+      )}
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1 px-6 py-5 flex flex-col">
+      <!-- 1. Title and Platform Logos -->
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="text-2xl font-bold text-gray-900">
+          {title}
+        </h3>
+        
+        {platforms.length > 0 && (
+          <div class="flex gap-4">
+            {platforms.includes('steam') && (
+              <!-- Steam Logo -->
+              <div class="inline-flex flex-col items-center gap-0.5">
+                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm9.423-11.375c-1.661 0-3.01 1.35-3.01 3.012s1.347 3.011 3.01 3.011 3.01-1.349 3.01-3.01-1.346-3.012-3.01-3.012zm0 4.772c-.974 0-1.762-.79-1.762-1.762s.789-1.763 1.762-1.763c.971 0 1.762.791 1.762 1.763s-.79 1.762-1.762 1.762z"/>
+                </svg>
+                <span class="text-gray-700 text-[10px] font-medium">Steam</span>
+              </div>
+            )}
+
+            {platforms.includes('switch') && (
+              <!-- Switch Logo -->
+              <div class="inline-flex flex-col items-center gap-0.5">
+                <img src="/images/icon/switch-logo.svg" alt="Switch" class="w-8 h-8" />
+                <span class="text-gray-700 text-[10px] font-medium">Switch</span>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      <!-- 2. 分隔線 -->
+      <hr class="border-gray-300 mb-3" />
+
+      <!-- 3. Description -->
+      <p class="text-gray-600 text-sm mb-3">
+        {description}
+      </p>
+
+      <!-- 4. 空格 -->
+
+      <!-- 5. DevDetail -->
+      {devDetail && (
+        <p class="text-gray-500 text-xs mb-3" set:html={devDetail}>
+        </p>
+      )}
+
+      <!-- 6. 空格 -->
+
+      <!-- 7. R18 Warning -->
+      {showR18 && (
+        <div class="mb-3 px-3 py-2 bg-red-100 border border-red-300 rounded-lg">
+          <p class="text-red-700 text-xs font-bold text-center">
+            🔞 未滿18歳禁止
+          </p>
+        </div>
+      )}
+
+      <!-- 8. 空格 -->
+    </div>
+  </article>
+</div>
+)}

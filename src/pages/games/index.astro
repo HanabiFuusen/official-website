@@ -1,53 +1,32 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import GameCard from '../../components/GameCard.astro'
+import GameLongCard from '../../components/GameLongCard.astro'
+import { allGames } from '../../data/games'
 
-const games = [
-  {
-    id: 'game01',
-    title: '帶我去地下城吧！！',
-    description: '一款刺激的地下城冒險遊戲，探索神秘的地下迷宮，與各種怪物戰鬥，收集珍貴的寶藏！',
-    image: '/images/game/game01/cover.jpg',
-    tags: ['冒險', '地下城'],
-  },
-]
+
 ---
 
 <Layout title="遊戲作品" description="探索 HanabiFuusen 的遊戲作品">
-  <section class="pt-32 pb-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-black text-gray-900 mb-6" data-i18n="games.title">
-        </h1>
-        <p class="text-xl text-gray-600" data-i18n="games.subtitle">
-        </p>
-      </div>
-
-      <!-- Games Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {games.map((game) => (
-          <GameCard
-            title={game.title}
-            description={game.description}
-            image={game.image}
+  <section class="pt-34 pb-16 max-w-4xl mx-auto">
+    <div class="px-4 sm:px-6 lg:px-8">
+      <!-- Games List -->
+      <div class="flex flex-col gap-8">
+        {allGames.map((game) => (
+          <GameLongCard
+            title={game.titleKey || ''}
+            description={game.descriptionKey || ''}
+            devDetail={game.devDetailKey}
+            image={game.imgCover}
             href={`/games/${game.id}`}
+            platforms={game.platforms || []}
+            leftMemoText={game.leftMemoText}
+            leftMemoColor={game.leftMemoColor}
+            rightMemoText={game.rightMemoText}
+            rightMemoColor={game.rightMemoColor}
+            r18={game.r18}
+            haveDetailPage={game.haveDetailPage}
           />
         ))}
-
-        <!-- Coming Soon Card -->
-        <div class="bg-gray-100 rounded-2xl overflow-hidden border border-gray-300 border-dashed">
-          <div class="aspect-video bg-gray-200/50 flex items-center justify-center">
-            <div class="text-center">
-              <span class="text-4xl mb-2 block">🎮</span>
-              <span class="text-gray-500">敬請期待</span>
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-500 mb-2">更多遊戲開發中...</h3>
-            <p class="text-gray-500 text-sm">我們正在努力開發新的遊戲作品</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
