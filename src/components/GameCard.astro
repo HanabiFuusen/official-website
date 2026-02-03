@@ -22,7 +22,7 @@ const wrapperProps = haveDetailPage ? { href } : {}
   <!-- 右側 Memo 便條紙 -->
   {rightMemoText && (
     <div 
-      class="absolute -top-2 -right-2 z-50 px-3 py-1.5 text-xs font-bold text-gray-800 shadow-md transform border-2 border-white rounded-lg"
+      class="absolute -top-2 -right-2 z-10 px-3 py-1.5 text-xs font-bold text-gray-800 shadow-md transform border-2 border-white rounded-lg"
       style={`
           background-color: ${rightMemoColor}; 
           box-shadow: 0 0 0 3px ${rightMemoColor}, 5px 5px 0px 2px rgba(0, 0, 0, .2);`}
@@ -46,7 +46,7 @@ const wrapperProps = haveDetailPage ? { href } : {}
       <!-- 左側 Memo 便條紙 -->
       {leftMemoText && (
         <div 
-          class="absolute bottom-0 left-0 z-50 px-3 py-1.5 text-xs font-bold text-gray-800 shadow-md transform rounded-tr-lg"
+          class="absolute bottom-0 left-0 z-10 px-3 py-1.5 text-xs font-bold text-gray-800 shadow-md transform rounded-tr-lg"
           style={`background-color: ${leftMemoColor}; box-shadow: 3px -3px 5px 0px rgba(0, 0, 0, .2);`}
         >
           {leftMemoText}
