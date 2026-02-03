@@ -5,14 +5,31 @@ interface Props {
   image: string
   href: string
   platforms?: ('steam' | 'switch')[]
+  leftMemoText?: string
+  leftMemoColor?: string
+  rightMemoText?: string
+  rightMemoColor?: string
 }
 
-const { title, description, image, href, platforms = [] } = Astro.props
+const { title, description, image, href, platforms = [], leftMemoText, leftMemoColor = '#FFE680', rightMemoText, rightMemoColor = '#FFE680' } = Astro.props
 ---
 
-<a href={href} class="group block">
-  <article class="bg-gray-100 rounded-2xl overflow-hidden border border-gray-300 hover:border-blue-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/10"
+<a href={href} class="group block relative">
+  <!-- 右側 Memo 便條紙 -->
+  {rightMemoText && (
+    <div 
+      class="absolute -top-2 -right-2 z-50 px-3 py-1.5 text-xs font-bold text-gray-800 shadow-md transform border-2 border-white rounded-lg"
+      style={`
+          background-color: ${rightMemoColor}; 
+          box-shadow: 0 0 0 3px ${rightMemoColor}, 5px 5px 0px 2px rgba(0, 0, 0, .2);`}
+    >
+      {rightMemoText}
+    </div>
+  )}
+
+  <article class="bg-gray-100 rounded-2xl overflow-hidden border border-gray-300 hover:border-blue-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/10 relative"
      style="box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);">
+
     <!-- Image -->
     <div class="relative aspect-video overflow-hidden">
       <img 
@@ -21,6 +38,16 @@ const { title, description, image, href, platforms = [] } = Astro.props
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-gray-100 via-transparent to-transparent opacity-60" />
+      
+      <!-- 左側 Memo 便條紙 -->
+      {leftMemoText && (
+        <div 
+          class="absolute bottom-0 left-0 z-50 px-3 py-1.5 text-xs font-bold text-gray-800 shadow-md transform rounded-tr-lg"
+          style={`background-color: ${leftMemoColor}; box-shadow: 3px -3px 5px 0px rgba(0, 0, 0, .2);`}
+        >
+          {leftMemoText}
+        </div>
+      )}
     </div>
 
     <!-- Content -->

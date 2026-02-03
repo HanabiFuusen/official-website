@@ -1,8 +1,11 @@
 {
   "nav": {
     "top": "Top",
+    "topDescr": "Home",
     "news": "News",
-    "games": "Game"
+    "newsDescr": "Latest Updates",
+    "games": "Game",
+    "gamesDescr": "Our Works"
   },
   "home": {
     "title": "HanabiFuusen",

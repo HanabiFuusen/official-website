@@ -1,8 +1,11 @@
 {
   "nav": {
     "top": "Top",
+    "topDescr": "ホーム",
     "news": "News",
-    "games": "Game"
+    "newsDescr": "最新情報",
+    "games": "Game",
+    "gamesDescr": "ゲーム作品"
   },
   "home": {
     "title": "花火風船",

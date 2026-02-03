@@ -1,14 +1,17 @@
 {
   "nav": {
     "top": "TOP",
+    "topDescr": "トップ",
     "news": "NEWS",
-    "games": "GAMES"
+    "newsDescr": "ニュース",
+    "games": "GAMES",
+    "gamesDescr": "ゲーム"
   },
   "home": {
     "title": "風船花火",
     "featuredGame": {
       "title": "帶我地下城吧！！",
-      "description": "一款充滿創意與樂趣的冒險遊戲",
+      "description": "好評發售中",
       "playNow": "立即遊玩"
     },
     "moreGames": "GAMES",

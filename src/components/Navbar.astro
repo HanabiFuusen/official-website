@@ -2,9 +2,9 @@
 const pathname = Astro.url.pathname
 
 const navLinks = [
-  { href: '/', labelKey: 'nav.top' },
-  { href: '/news', labelKey: 'nav.news' },
-  { href: '/games', labelKey: 'nav.games' },
+  { href: '/', labelKey: 'nav.top', labelDescrKey: 'nav.topDescr' },
+  { href: '/news', labelKey: 'nav.news', labelDescrKey: 'nav.newsDescr' },
+  { href: '/games', labelKey: 'nav.games', labelDescrKey: 'nav.gamesDescr' },
 ]
 
 const socialLinks = [
@@ -89,13 +89,14 @@ const languages = [
             <a
               href={link.href}
               class:list={[
-                'flex items-center justify-center h-full px-6 text-sm font-bold transition-all text-white w-[200px] min-w-0 flex-shrink hover:underline',
+                'flex flex-col items-center justify-center h-full px-6 transition-all text-white w-[200px] min-w-0 flex-shrink',
                 pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
                   ? 'bg-white/0'
                   : 'hover:bg-white/20',
               ]}
-              data-i18n={link.labelKey}
             >
+              <span class="text-lg font-bold hover:underline leading-none" data-i18n={link.labelKey}></span>
+              <span class="text-[10px] text-gray-100/70 leading-none mt-0.25" data-i18n={link.labelDescrKey}></span>
             </a>
             <div class="absolute right-0 top-[5px] bottom-[5px] w-[2px] bg-white"></div>
           </li>
@@ -146,13 +147,14 @@ const languages = [
             <a
               href={link.href}
               class:list={[
-                'block py-2 px-4 rounded-lg text-sm font-medium transition-colors',
+                'block py-2 px-4 rounded-lg transition-colors',
                 pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
                   ? 'bg-pink-500/20 text-pink-400'
                   : 'text-gray-300 hover:bg-gray-800 hover:text-white',
               ]}
-              data-i18n={link.labelKey}
             >
+              <div class="text-base font-semibold -mt-[10px]" data-i18n={link.labelKey}></div>
+              <div class="text-[11px] text-gray-500 -mt-[10px]" data-i18n={link.labelDescrKey}></div>
             </a>
           </li>
         ))}
