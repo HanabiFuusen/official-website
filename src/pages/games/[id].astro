@@ -1,184 +1,126 @@
 ---
 import Layout from '../../layouts/Layout.astro'
+import { allGames } from '../../data/games'
 
-// Game data - in a real app, this could come from a CMS or database
-interface GameData {
-  title: string
-  description: string
-  longDescription: string
-  image: string
-  tags: string[]
-  features: string[]
-  releaseStatus: string
-}
-
-const gamesData: Record<string, GameData> = {
-  game01: {
-    title: '帶我去地下城吧！！',
-    description: '一款刺激的地下城冒險遊戲',
-    longDescription: '《帶我去地下城吧！！》是一款結合動作與策略的地下城探索遊戲。玩家將扮演勇敢的冒險者，深入神秘莫測的地下迷宮，面對各種強大的怪物和機關陷阱。在這個充滿危險與寶藏的世界中，你需要運用智慧和勇氣，才能成為真正的地下城征服者！',
-    image: '/images/game/game01/cover.jpg',
-    tags: ['冒險', '地下城', 'RPG'],
-    features: [
-      '隨機生成的地下城關卡，每次遊玩都有新體驗',
-      '豐富的角色成長系統與技能樹',
-      '多樣化的武器裝備收集',
-      '具挑戰性的 Boss 戰鬥',
-      '精美的像素藝術風格',
-    ],
-    releaseStatus: '開發中',
-  },
-  game02: {
-    title: '遊戲作品 2',
-    description: '即將推出',
-    longDescription: '敬請期待更多精彩內容！',
-    image: '/images/game02_cover.jpg',
-    tags: ['即將推出'],
-    features: ['開發中'],
-    releaseStatus: '規劃中',
-  },
-  game03: {
-    title: '遊戲作品 3',
-    description: '即將推出',
-    longDescription: '敬請期待更多精彩內容！',
-    image: '/images/game03_cover.jpg',
-    tags: ['即將推出'],
-    features: ['開發中'],
-    releaseStatus: '規劃中',
-  },
-  game04: {
-    title: '遊戲作品 4',
-    description: '即將推出',
-    longDescription: '敬請期待更多精彩內容！',
-    image: '/images/game04_cover.jpg',
-    tags: ['即將推出'],
-    features: ['開發中'],
-    releaseStatus: '規劃中',
-  },
-}
-
-// Required for dynamic routes in Astro
 export function getStaticPaths() {
-  const gamesData: Record<string, GameData> = {
-    game01: {
-      title: '帶我去地下城吧！！',
-      description: '一款刺激的地下城冒險遊戲',
-      longDescription: '《帶我去地下城吧！！》是一款結合動作與策略的地下城探索遊戲。玩家將扮演勇敢的冒險者，深入神秘莫測的地下迷宮，面對各種強大的怪物和機關陷阱。在這個充滿危險與寶藏的世界中，你需要運用智慧和勇氣，才能成為真正的地下城征服者！',
-      image: '/images/game/game01/cover.jpg',
-      tags: ['冒險', '地下城', 'RPG'],
-      features: [
-        '隨機生成的地下城關卡，每次遊玩都有新體驗',
-        '豐富的角色成長系統與技能樹',
-        '多樣化的武器裝備收集',
-        '具挑戰性的 Boss 戰鬥',
-        '精美的像素藝術風格',
-      ],
-      releaseStatus: '開發中',
-    },
-    game02: {
-      title: '遊戲作品 2',
-      description: '即將推出',
-      longDescription: '敬請期待更多精彩內容！',
-      image: '/images/game02_cover.jpg',
-      tags: ['即將推出'],
-      features: ['開發中'],
-      releaseStatus: '規劃中',
-    },
-    game03: {
-      title: '遊戲作品 3',
-      description: '即將推出',
-      longDescription: '敬請期待更多精彩內容！',
-      image: '/images/game03_cover.jpg',
-      tags: ['即將推出'],
-      features: ['開發中'],
-      releaseStatus: '規劃中',
-    },
-    game04: {
-      title: '遊戲作品 4',
-      description: '即將推出',
-      longDescription: '敬請期待更多精彩內容！',
-      image: '/images/game04_cover.jpg',
-      tags: ['即將推出'],
-      features: ['開發中'],
-      releaseStatus: '規劃中',
-    },
-  }
-  
-  return Object.keys(gamesData).map((id) => ({
-    params: { id },
+  return allGames.map((game) => ({
+    params: { id: game.id },
   }))
 }
 
 const { id } = Astro.params
-const game = id ? gamesData[id] : null
+const game = allGames.find(g => g.id === id)
 
 if (!game) {
   return Astro.redirect('/games')
 }
 ---
 
-<Layout title={game.title} description={game.description}>
+<Layout title={game.titleKey || 'Game'} description={game.descriptionKey || ''}>
   <!-- Hero Section -->
   <section class="relative min-h-[70vh] pt-16">
     <div class="absolute inset-0">
       <img 
-        src={game.image}
-        alt={game.title}
+        src={game.imgCover}
+        alt={game.titleKey || ''}
         class="w-full h-full object-cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/70 to-gray-950/30" />
+      <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-bg-main)] via-[var(--color-bg-main)]/70 to-[var(--color-bg-main)]/30" />
     </div>
 
-    <div class="relative h-full min-h-[70vh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-end pb-20">
+    <div class="relative h-full min-h-[70vh] max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-end pb-20">
       <div class="max-w-3xl">
         <!-- Tags -->
+        {game.tags && game.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-4">
+            {game.tags.map((tag) => (
+              <span class="px-3 py-1 text-sm font-medium bg-blue-500/20 text-blue-600 rounded-full backdrop-blur-sm border border-blue-400/30">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+        
+        <!-- Memo Tags -->
         <div class="flex flex-wrap gap-2 mb-4">
-          {game.tags.map((tag) => (
-            <span class="px-3 py-1 text-sm font-medium bg-pink-500/20 text-pink-400 rounded-full backdrop-blur-sm">
-              {tag}
+          {game.leftMemoText && (
+            <span 
+              class="px-3 py-1 text-sm font-medium text-gray-800 rounded-full backdrop-blur-sm"
+              style={`background-color: ${game.leftMemoColor || '#FFE680'}`}
+            >
+              {game.leftMemoText}
             </span>
-          ))}
-          <span class="px-3 py-1 text-sm font-medium bg-yellow-500/20 text-yellow-400 rounded-full backdrop-blur-sm">
-            {game.releaseStatus}
-          </span>
+          )}
+          {game.rightMemoText && (
+            <span 
+              class="px-3 py-1 text-sm font-medium text-gray-800 rounded-full backdrop-blur-sm"
+              style={`background-color: ${game.rightMemoColor || '#FFE680'}`}
+            >
+              {game.rightMemoText}
+            </span>
+          )}
         </div>
 
+        <!-- R18 Warning -->
+        {game.r18 && (
+          <div class="mb-4 inline-block">
+            <img 
+              src="/images/icon/ja_r18.png" 
+              alt="R18" 
+              class="w-16 h-16"
+            />
+          </div>
+        )}
+
         <!-- Title -->
-        <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
-          {game.title}
+        <h1 class="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
+          {game.titleKey}
         </h1>
 
         <!-- Description -->
-        <p class="text-xl text-gray-300 leading-relaxed">
-          {game.longDescription}
+        <p class="text-xl text-gray-800 leading-relaxed mb-6">
+          {game.descriptionKey}
         </p>
-      </div>
-    </div>
-  </section>
 
-  <!-- Features Section -->
-  <section class="py-20 bg-gray-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-white mb-12 text-center">
-        遊戲特色
-      </h2>
+        <!-- Platforms -->
+        {game.platforms && game.platforms.length > 0 && (
+          <div class="flex gap-4 mt-6">
+            {game.platforms.includes('steam') && (
+              <div class="inline-flex flex-col items-center gap-1 px-4 py-2 rounded-lg backdrop-blur-sm" style="background-color: var(--color-bg-main); opacity: 0.8;">
+                <svg class="w-10 h-10 text-gray-900" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm9.423-11.375c-1.661 0-3.01 1.35-3.01 3.012s1.347 3.011 3.01 3.011 3.01-1.349 3.01-3.01-1.346-3.012-3.01-3.012zm0 4.772c-.974 0-1.762-.79-1.762-1.762s.789-1.763 1.762-1.763c.971 0 1.762.791 1.762 1.763s-.79 1.762-1.762 1.762z"/>
+                </svg>
+                <span class="text-gray-900 text-xs font-medium">Steam</span>
+              </div>
+            )}
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {game.features.map((feature, index) => (
-          <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700 hover:border-pink-500/50 transition-colors">
-            <div class="w-10 h-10 bg-pink-500/20 rounded-lg flex items-center justify-center text-pink-400 font-bold mb-4">
-              {index + 1}
-            </div>
-            <p class="text-gray-300">{feature}</p>
+            {game.platforms.includes('switch') && (
+              <div class="inline-flex flex-col items-center gap-1 px-4 py-2 rounded-lg backdrop-blur-sm" style="background-color: var(--color-bg-main); opacity: 0.8;">
+                <img src="/images/icon/switch-logo.svg" alt="Switch" class="w-10 h-10" />
+                <span class="text-gray-900 text-xs font-medium">Switch</span>
+              </div>
+            )}
           </div>
-        ))}
+        )}
       </div>
     </div>
   </section>
+
+  <!-- Details Section -->
+  {game.devDetailKey && (
+    <section class="py-20" style="background-color: var(--color-bg-main);">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-xl p-8 border border-gray-300" style="background-color: var(--color-bg-main); opacity: 0.5;">
+          <div class="prose prose-invert max-w-none text-gray-700" set:html={game.devDetailKey}>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- Back to Games -->
   <section class="py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <a 
         href="/games"
         class="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"

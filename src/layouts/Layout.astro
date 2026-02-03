@@ -29,6 +29,17 @@ const { title, description = 'HanabiFuusen - 遊戲開發工作室' } = Astro.pr
       <slot />
     </main>
     <Footer />
+    
+    <!-- Back to Top Button -->
+    <button 
+      id="back-to-top"
+      class="fixed bottom-6 right-6 z-40 w-12 h-12 bg-pink-500 hover:bg-pink-600 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300"
+      aria-label="回到頂部"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+      </svg>
+    </button>
   </body>
 </html>
 
@@ -36,4 +47,33 @@ const { title, description = 'HanabiFuusen - 遊戲開發工作室' } = Astro.pr
   body {
     font-family: 'Noto Sans TC', sans-serif;
   }
+  
+  #back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+  }
 </style>
+
+<script>
+  // Back to Top functionality
+  const backToTopButton = document.getElementById('back-to-top')
+  
+  if (backToTopButton) {
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('show')
+      } else {
+        backToTopButton.classList.remove('show')
+      }
+    })
+    
+    // Scroll to top when clicked
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    })
+  }
+</script>

@@ -1,0 +1,433 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { allGames } from '../../data/games'
+
+const game = allGames.find(g => g.id === 'game01')
+
+if (!game) {
+  return Astro.redirect('/games')
+}
+---
+
+<Layout title={game.titleKey || 'Game'} description={game.descriptionKey || ''}>
+  <!-- Hero Section -->
+  <section class="relative min-h-[70vh] pt-16">
+    <div class="absolute inset-0">
+      <img 
+        src={game.imgCover}
+        alt={game.titleKey || ''}
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-bg-main)] via-[var(--color-bg-main)]/70 to-[var(--color-bg-main)]/30" />
+    </div>
+
+    <div class="relative h-full min-h-[70vh] max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-end pb-20">
+      <div class="max-w-3xl">
+        <!-- Tags -->
+        {game.tags && game.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-4">
+            {game.tags.map((tag) => (
+              <span class="px-3 py-1 text-sm font-medium bg-blue-500/20 text-blue-600 rounded-full backdrop-blur-sm border border-blue-400/30">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+        
+        <!-- Memo Tags -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          {game.leftMemoText && (
+            <span 
+              class="px-3 py-1 text-sm font-medium text-gray-800 rounded-full backdrop-blur-sm"
+              style={`background-color: ${game.leftMemoColor || '#FFE680'}`}
+            >
+              {game.leftMemoText}
+            </span>
+          )}
+          {game.rightMemoText && (
+            <span 
+              class="px-3 py-1 text-sm font-medium text-gray-800 rounded-full backdrop-blur-sm"
+              style={`background-color: ${game.rightMemoColor || '#FFE680'}`}
+            >
+              {game.rightMemoText}
+            </span>
+          )}
+        </div>
+
+        <!-- R18 Warning -->
+        {game.r18 && (
+          <div class="mb-4 inline-block">
+            <img 
+              src="/images/icon/ja_r18.png" 
+              alt="R18" 
+              class="w-16 h-16"
+            />
+          </div>
+        )}
+
+        <!-- Title -->
+        <h1 class="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
+          {game.titleKey}
+        </h1>
+
+        <!-- Description -->
+        <p class="text-xl text-gray-800 leading-relaxed mb-6">
+          {game.descriptionKey}
+        </p>
+
+        <!-- Platforms -->
+        {game.platforms && game.platforms.length > 0 && (
+          <div class="flex gap-4 mt-6">
+            {game.platforms.includes('steam') && (
+              <div class="inline-flex flex-col items-center gap-1 px-4 py-2 rounded-lg backdrop-blur-sm" style="background-color: var(--color-bg-main); opacity: 0.8;">
+                <svg class="w-10 h-10 text-gray-900" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm9.423-11.375c-1.661 0-3.01 1.35-3.01 3.012s1.347 3.011 3.01 3.011 3.01-1.349 3.01-3.01-1.346-3.012-3.01-3.012zm0 4.772c-.974 0-1.762-.79-1.762-1.762s.789-1.763 1.762-1.763c.971 0 1.762.791 1.762 1.763s-.79 1.762-1.762 1.762z"/>
+                </svg>
+                <span class="text-gray-900 text-xs font-medium">Steam</span>
+              </div>
+            )}
+
+            {game.platforms.includes('switch') && (
+              <div class="inline-flex flex-col items-center gap-1 px-4 py-2 rounded-lg backdrop-blur-sm" style="background-color: var(--color-bg-main); opacity: 0.8;">
+                <img src="/images/icon/switch-logo.svg" alt="Switch" class="w-10 h-10" />
+                <span class="text-gray-900 text-xs font-medium">Switch</span>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- SubDetails Section 1: 角色 -->
+  <section class="py-20" style="background-color: var(--color-bg-main);">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-xl p-8 border border-gray-300" style="background-color: var(--color-bg-main);">
+        <!-- 1. SubTitle -->
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
+          角色
+        </h2>
+
+        
+        <!-- 2. 分隔線 -->
+        <div class="relative mb-8">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t-2 border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <span class="px-4 text-sm text-gray-500" style="background-color: var(--color-bg-main);">✦</span>
+          </div>
+        </div>
+        
+        <!-- 3. 實際內容 -->
+        <div class="space-y-12">
+          <!-- 角色卡片 1: 尤娜 -->
+          <div class="flex flex-col items-center text-center">
+            <div class="mb-4 overflow-hidden rounded-lg">
+              <img 
+                src="/images/game/game01/una2.png" 
+                alt="Yuna" 
+                class="h-auto hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">女主角 - 尤娜</h3>
+              <p class="text-base text-gray-600">CV: 花屋敷やや</p>
+            </div>
+          </div>
+
+          <!-- 角色卡片 2: 夢娜 -->
+          <div class="flex flex-col items-center text-center">
+            <div class="mb-4 overflow-hidden rounded-lg">
+              <img 
+                src="/images/game/game01/mona2.png" 
+                alt="Muna" 
+                class="h-auto hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">神秘的大姐姐 - 夢娜</h3>
+              <p class="text-base text-gray-600">CV: 星リルカ</p>
+            </div>
+          </div>
+
+          <!-- 角色卡片 3: 潘蜜拉 -->
+          <div class="flex flex-col items-center text-center">
+            <div class="mb-4 overflow-hidden rounded-lg">
+              <img 
+                src="/images/game/game01/pamela2.png" 
+                alt="Pamela" 
+                class="h-auto hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">淘氣的「魔王」 - 潘蜜拉</h3>
+              <p class="text-base text-gray-600">CV: 東シヅ</p>
+            </div>
+          </div>
+
+          <!-- TODO 4 -->
+          <div class="flex flex-col items-center text-center">
+            <div class="mb-4 overflow-hidden rounded-lg">
+              <img 
+                src="/images/game/game01/other.png" 
+                alt="Pamela" 
+                class="h-auto hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">和其他個性豐富的性感女角們</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SubDetails Section 2: GamePlay -->
+  <section class="py-20" style="background-color: var(--color-bg-main);">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-xl p-8 border border-gray-300" style="background-color: var(--color-bg-main);">
+        <!-- 1. SubTitle -->
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
+          遊玩內容
+        </h2>
+        
+        <!-- 2. 分隔線 -->
+        <div class="relative mb-8">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t-2 border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <span class="px-4 text-sm text-gray-500" style="background-color: var(--color-bg-main);">✦</span>
+          </div>
+        </div>
+        
+        <!-- 3. 實際內容 -->
+        <div class="space-y-16">
+          <!-- Gameplay 1 -->
+          <div class="flex flex-col items-center text-center space-y-4">
+            <h3 class="text-2xl font-bold text-gray-900">迷宮系統</h3>
+            <p class="text-base text-gray-600 max-w-2xl">包含怪物、商店、寶物、休息、劇情事件等隨機生成的地下迷宮；<br>提前預視未來三階層選項，小心地向迷宮最深處前進吧！</p>
+            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+              <img src="/images/game/game01/selectiongif.gif" alt="Gameplay 1" class="w-full h-auto hover:scale-105 transition-transform duration-300" />
+            </div>
+          </div>
+
+          <!-- Gameplay 2 -->
+          <div class="flex flex-col items-center text-center space-y-4">
+            <h3 class="text-2xl font-bold text-gray-900">卡牌戰鬥</h3>
+            <p class="text-base text-gray-600 max-w-2xl">超過50張卡牌和20種符文，隨心所欲地組合出最強牌組，用它們打倒敵人吧！<br>不小心令尤娜受傷的話…更可能會令她的衣服破掉？！</p>
+            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+              <img src="/images/game/game01/battlegif.gif" alt="Gameplay 2" class="w-full h-auto hover:scale-105 transition-transform duration-300" />
+            </div>
+          </div>
+
+          <!-- Gameplay 3 -->
+          <div class="flex flex-col items-center text-center space-y-4">
+            <h3 class="text-2xl font-bold text-gray-900">隨機寶藏</h3>
+            <p class="text-base text-gray-600 max-w-2xl">冒險中會隨機獲得各種寶藏，強化女主角的能力，或許你還能抽到最強的寶藏組合，打出驚人傷害！</p>
+            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+              <img src="/images/game/game01/treasuregif.gif" alt="Gameplay 3" class="w-full h-auto hover:scale-105 transition-transform duration-300" />
+            </div>
+          </div>
+
+          <!-- Gameplay 4 -->
+          <div class="flex flex-col items-center text-center space-y-4">
+            <h3 class="text-2xl font-bold text-gray-900">精彩劇情及多個結局</h3>
+            <p class="text-base text-gray-600 max-w-2xl">享受精彩的冒險故事，結局好壞將由玩家的選擇來決定；<br>解鎖不同的支線事件，完結後更會觸發卡牌附魔，獎勵或是懲罰隨之而來。<br>全日文語音，令你更投入劇情！</p>
+            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+              <img src="/images/game/game01/storygif.gif" alt="Gameplay 4" class="w-full h-auto hover:scale-105 transition-transform duration-300" />
+            </div>
+          </div>
+          
+          <!-- Gameplay 5 -->
+          <div class="flex flex-col items-center text-center space-y-4">
+            <h3 class="text-2xl font-bold text-gray-900">深淵地城</h3>
+            <p class="text-base text-gray-600 max-w-2xl">突破主線故事後將會開啟「深淵地城」，一個讓你盡情享受卡牌對戰的無盡挑戰！<br>只能使用固定的牌組開局，在地城中獲取隨機卡牌進行冒險，考驗你的運氣與實力！</p>
+            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+              <video src="/images/game/game01/abyss.webm" class="w-full h-auto hover:scale-105 transition-transform duration-300" autoplay loop muted playsinline></video>
+            </div>
+          </div>
+
+          <!-- Gameplay 6 -->
+          <div class="flex flex-col items-center text-center space-y-4">
+            <h3 class="text-2xl font-bold text-gray-900">難易度調整</h3>
+            <p class="text-base text-gray-600 max-w-2xl">在簡單模式下輕鬆享受劇情，或挑戰困難模式考驗自己的實力！<br>三種難易度任君選擇，讓各類玩家都能找到最適合的遊玩方式。</p>
+            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+              <img src="/images/game/game01/diff.png" alt="Gameplay 7" class="w-full h-auto hover:scale-105 transition-transform duration-300" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SubDetails Section 3: 外部支援 -->
+  <section class="py-20" style="background-color: var(--color-bg-main);">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-xl p-8 border border-gray-300" style="background-color: var(--color-bg-main);">
+        <!-- 1. SubTitle -->
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
+          外部支援
+        </h2>
+        
+        <!-- 2. 分隔線 -->
+        <div class="relative mb-8">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t-2 border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <span class="px-4 text-sm text-gray-500" style="background-color: var(--color-bg-main);">✦</span>
+          </div>
+        </div>
+        
+        <!-- 3. 實際內容 -->
+        <div class="prose prose-invert max-w-none text-gray-700">
+          <div class="flex flex-col items-center text-center space-y-4">
+            <h3 class="text-2xl font-bold text-gray-900">Lovense 互動支援</h3>
+            <p class="text-base text-gray-600 max-w-2xl">支援 Lovense 設備連動，為成人劇情增添全新的互動體驗！<br>在支援的場景中自由設定互動模式，打造專屬於你的親密時光。<br>*此功能需要額外設備支援。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SubDetails Section 4: 概要 -->
+  <section class="py-20" style="background-color: var(--color-bg-main);">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-xl p-8 border border-gray-300" style="background-color: var(--color-bg-main);">
+        <!-- 1. SubTitle -->
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
+          概要
+        </h2>
+        
+        <!-- 2. 分隔線 -->
+        <div class="relative mb-8">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t-2 border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <span class="px-4 text-sm text-gray-500" style="background-color: var(--color-bg-main);">✦</span>
+          </div>
+        </div>
+        
+        <!-- 3. 實際內容 -->
+        <div class="space-y-8">
+          <div class="max-w-2xl mx-auto space-y-0">
+            <!-- 名稱 -->
+            <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-gray-200 sm:pl-55">
+              <div class="font-semibold text-gray-900 sm:w-32 mb-1 sm:mb-0">名稱</div>
+              <div class="text-gray-700">帶我到地下城吧!!</div>
+            </div>
+
+            <!-- 對應主機 -->
+            <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-gray-200 sm:pl-55">
+              <div class="font-semibold text-gray-900 sm:w-32 mb-1 sm:mb-0">對應主機</div>
+              <div class="text-gray-700">STEAM PC, STEAMDECK</div>
+            </div>
+
+            <!-- 發行日期 -->
+            <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-gray-200 sm:pl-55">
+              <div class="font-semibold text-gray-900 sm:w-32 mb-1 sm:mb-0">發行日期</div>
+              <div class="text-gray-700">2023 年 6 月 29 日</div>
+            </div>
+
+            <!-- 對應語言 -->
+            <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-gray-200 sm:pl-55">
+              <div class="font-semibold text-gray-900 sm:w-32 mb-1 sm:mb-0">對應語言</div>
+              <div class="text-gray-700">日文 繁體中文 英文 簡體中文 韓文</div>
+            </div>
+
+            <!-- 分級 -->
+            <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-gray-200 sm:pl-55">
+              <div class="font-semibold text-gray-900 sm:w-32 mb-1 sm:mb-0">分級</div>
+              <div class="flex items-center">  
+                <img src="/images/icon/ja_r18.png" alt="R18" class="h-12 w-auto" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SubDetails Section 5: Spec -->
+  <section class="py-20" style="background-color: var(--color-bg-main);">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-xl p-8 border border-gray-300" style="background-color: var(--color-bg-main);">
+        <!-- 1. SubTitle -->
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
+          最低配備
+        </h2>
+        
+        <!-- 2. 分隔線 -->
+        <div class="relative mb-8">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t-2 border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <span class="px-4 text-sm text-gray-500" style="background-color: var(--color-bg-main);">✦</span>
+          </div>
+        </div>
+        
+        <!-- 3. 實際內容 -->
+        <div class="space-y-8">
+          <div class="max-w-2xl mx-auto space-y-0">
+            <!-- 作業系統 -->
+            <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-gray-200 sm:pl-55">
+              <div class="font-semibold text-gray-900 sm:w-32 mb-1 sm:mb-0">作業系統</div>
+              <div class="text-gray-700">Windows 7+</div>
+            </div>
+
+            <!-- 處理器 -->
+            <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-gray-200 sm:pl-55">
+              <div class="font-semibold text-gray-900 sm:w-32 mb-1 sm:mb-0">處理器</div>
+              <div class="text-gray-700">Core 2+</div>
+            </div>
+
+            <!-- 記憶體 -->
+            <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-gray-200 sm:pl-55">
+              <div class="font-semibold text-gray-900 sm:w-32 mb-1 sm:mb-0">記憶體</div>
+              <div class="text-gray-700">2 GB 記憶體</div>
+            </div>
+
+            <!-- 顯示卡 -->
+            <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-gray-200 sm:pl-55">
+              <div class="font-semibold text-gray-900 sm:w-32 mb-1 sm:mb-0">顯示卡</div>
+              <div class="text-gray-700">HD620+</div>
+            </div>
+
+            <!-- DirectX -->
+            <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-gray-200 sm:pl-55">
+              <div class="font-semibold text-gray-900 sm:w-32 mb-1 sm:mb-0">DirectX</div>
+              <div class="text-gray-700">版本：9.0c</div>
+            </div>
+          </div>
+
+          <!-- 備註 -->
+          <div class="mt-8 p-4 bg-gray-100 rounded-lg max-w-2xl mx-auto">
+            <p class="text-sm text-gray-600 text-center">
+              * 自 2024 年 1 月 1 日（PT）起，Steam 用戶端僅支援 Windows 10 及更新版本。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Games -->
+  <section class="py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <a 
+        href="/games"
+        class="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+        </svg>
+        返回遊戲列表
+      </a>
+    </div>
+  </section>
+</Layout>
