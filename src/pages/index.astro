@@ -12,18 +12,21 @@ const featuredGames = [
     titleKey: 'home.featuredGame.title',
     descriptionKey: 'home.featuredGame.description',
     image: '/images/game/game01/cover.png',
+    showR18: true,
   },
   {
     id: 'game02',
     titleKey: '帶我地下城吧！！',
     descriptionKey: '敬請期待',
     image: '/images/game/game02/cover.png',
+    showR18: false,
   },
   {
     id: 'comming_soon',
     titleKey: 'common.comingSoon',
     descriptionKey: 'common.comingSoon',
     image: '/images/game/coming_soon.png',
+    showR18: false,
   },
 ]
 
@@ -73,6 +76,33 @@ const otherGames: Array<{
 ---
 
 <Layout title="風船花火">
+  <!-- 年齡確認 Overlay -->
+  <div id="age-verification-overlay" class="fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm flex items-center justify-center hidden">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md mx-4 text-center">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">年齢確認</h2>
+      <p class="text-gray-700 mb-2 leading-relaxed">
+        このWebサイトは18歳未満の方には有害な情報を含んでおります。
+      </p>
+      <p class="text-gray-900 font-semibold mb-6 text-lg">
+        あなたは18歳以上ですか？
+      </p>
+      <div class="flex gap-4 justify-center">
+        <button 
+          id="age-yes" 
+          class="px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-lg transition-colors shadow-lg"
+        >
+          はい
+        </button>
+        <button 
+          id="age-no" 
+          class="px-8 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold rounded-lg transition-colors"
+        >
+          いいえ
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Hero Section - 大型特色遊戲區域 -->
   <section class="pt-34 pb-0 max-w-4xl mx-auto">
     <!-- 16:9 遊戲封面輪播 - 外層容器包含箭頭 -->
@@ -101,6 +131,13 @@ const otherGames: Array<{
                 
                 <!-- 半透明遮罩 - 非中心卡片使用 -->
                 <div class="carousel-overlay absolute inset-0 bg-black/50 transition-opacity duration-700 pointer-events-none opacity-0"></div>
+                
+                <!-- R18 圖標 -->
+                {game.showR18 && (
+                  <div class="absolute bottom-3 right-3 z-10">
+                    <img src="/images/icon/ja_r18.png" alt="R18" class="w-16 h-16 opacity-90" />
+                  </div>
+                )}
               </div>
 
               <!-- 遊戲資訊內容 -->
@@ -233,6 +270,31 @@ const otherGames: Array<{
 <script>
   import { updateContent } from '../scripts/i18n'
   updateContent()
+
+  // 年齡確認邏輯
+  const ageOverlay = document.getElementById('age-verification-overlay')
+  const ageYesBtn = document.getElementById('age-yes')
+  const ageNoBtn = document.getElementById('age-no')
+
+  // 檢查是否已確認過年齡
+  const isAgeVerified = localStorage.getItem('age-verified')
+  
+  if (!isAgeVerified) {
+    // 顯示年齡確認彈窗
+    ageOverlay?.classList.remove('hidden')
+  }
+
+  // 點擊「はい」
+  ageYesBtn?.addEventListener('click', () => {
+    localStorage.setItem('age-verified', 'true')
+    ageOverlay?.classList.add('hidden')
+  })
+
+  // 點擊「いいえ」
+  ageNoBtn?.addEventListener('click', () => {
+    // 導向到其他網站或顯示警告
+    window.location.href = 'https://www.google.com'
+  })
 
   // Carousel functionality
   let currentIndex = 0
