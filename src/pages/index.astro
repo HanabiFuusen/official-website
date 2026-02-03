@@ -7,7 +7,7 @@ const featuredGame = {
   titleKey: 'home.featuredGame.title',
   descriptionKey: 'home.featuredGame.description',
   tagsKeys: ['games.tags.adventure', 'games.tags.puzzle'],
-  image: '/images/game01_cover.jpg',
+  image: '/images/game/game01/cover.png',
 }
 
 const otherGames = [
@@ -34,16 +34,16 @@ const otherGames = [
 
 <Layout title="花火風船">
   <!-- Hero Section - 大型特色遊戲區域 -->
-  <section class="relative min-h-screen">
-    <!-- 全螢幕遊戲封面 -->
-    <div class="relative h-screen max-w-4xl mx-auto">
+  <section class="pt-36">
+    <!-- 16:9 遊戲封面 -->
+    <div class="relative aspect-video max-w-4xl mx-auto">
       <a href={`/games/${featuredGame.id}`} class="block h-full group">
         <!-- 背景圖片 -->
         <div class="absolute inset-0">
           <img 
             src={featuredGame.image}
             alt={featuredGame.titleKey}
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            class="w-full h-full object-cover"
           />
           <!-- 漸層遮罩 - 讓文字更清晰 -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
@@ -83,9 +83,9 @@ const otherGames = [
   </section>
 
   <!-- 其他遊戲區域 -->
-  <section class="bg-gray-950 py-16">
+  <section class="py-16">
     <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-12" data-i18n="home.moreGames">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12" data-i18n="home.moreGames">
       </h2>
       
       <!-- 遊戲卡片網格 -->

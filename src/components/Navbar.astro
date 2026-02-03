@@ -2,10 +2,9 @@
 const pathname = Astro.url.pathname
 
 const navLinks = [
-  { href: '/', labelKey: 'nav.home' },
-  { href: '/about', labelKey: 'nav.about' },
+  { href: '/', labelKey: 'nav.top' },
+  { href: '/news', labelKey: 'nav.news' },
   { href: '/games', labelKey: 'nav.games' },
-  { href: '/contact', labelKey: 'nav.contact' },
 ]
 
 const socialLinks = [
@@ -33,17 +32,16 @@ const languages = [
 ]
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-gray-950/95 backdrop-blur-md border-b border-gray-800">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-gray-950/95 backdrop-blur-md">
   <div class="max-w-full mx-auto">
     <!-- 第一層：Logo 和社群媒體 -->
-    <div class="flex items-center justify-between h-24 border-b border-gray-800/50  px-4 sm:px-6 lg:px-8" style="background-color: #FFFFFF;">
+    <div class="flex items-center justify-between h-15  px-4 sm:px-6 lg:px-8" style="background-color: var(--color-navbar-layer1);">
       <!-- 左側空白 (用於保持 logo 居中) -->
       <div class="flex-1 hidden md:block"></div>
       
       <!-- 中間 Logo -->
       <a href="/" class="flex flex-col items-center justify-center group">
-        <img src="/images/logo.png" alt="HanabiFuusen" class="h-12 w-auto transition-transform group-hover:scale-105 mb-1" />
-        <span class="text-xs font-semibold text-gray-400 group-hover:text-pink-400 transition-colors tracking-wider">HANABI FUUSEN</span>
+        <img src="/images/logo.png" alt="HanabiFuusen" class="h-10 w-auto mb-1" />
       </a>
 
       <!-- 右側區域 -->
@@ -77,25 +75,29 @@ const languages = [
     </div>
 
     <!-- 第二層：導航連結和語言切換 -->
-    <div class="hidden md:flex items-center justify-between h-12 px-4" style="background-color: #86BBE4;">
+    <div class="hidden md:flex items-center justify-between h-12 px-4" style="background-color: var(--color-navbar-layer2); box-shadow: 0 -1px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 6px -1px rgb(0 0 0 / 0.4);">
       <!-- 左側空白保持居中 -->
       <div class="flex-1"></div>
       
       <!-- 中間導航連結 -->
-      <ul class="flex items-center gap-3">
-        {navLinks.map((link) => (
-          <li>
+      <ul class="flex items-center h-full">
+        {navLinks.map((link, index) => (
+          <li class="h-full relative">
+            {index === 0 && (
+              <div class="absolute left-0 top-[5px] bottom-[5px] w-[2px] bg-white"></div>
+            )}
             <a
               href={link.href}
               class:list={[
-                'block px-6 py-2 text-sm font-medium transition-all rounded-lg border-2',
+                'flex items-center justify-center h-full px-6 text-sm font-bold transition-all text-white w-[200px] min-w-0 flex-shrink hover:underline',
                 pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
-                  ? 'bg-pink-500/20 text-pink-400 border-pink-500/50'
-                  : 'bg-gray-800/30 text-gray-300 border-gray-700/50 hover:bg-gray-800/50 hover:border-gray-600 hover:text-white',
+                  ? 'bg-white/0'
+                  : 'hover:bg-white/20',
               ]}
               data-i18n={link.labelKey}
             >
             </a>
+            <div class="absolute right-0 top-[5px] bottom-[5px] w-[2px] bg-white"></div>
           </li>
         ))}
       </ul>

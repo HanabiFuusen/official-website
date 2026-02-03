@@ -1,9 +1,8 @@
 {
   "nav": {
-    "home": "ホーム",
-    "about": "私たちについて",
-    "games": "ゲーム作品",
-    "contact": "お問い合わせ"
+    "top": "Top",
+    "news": "News",
+    "games": "Game"
   },
   "home": {
     "title": "花火風船",

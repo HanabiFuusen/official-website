@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+/* ===========================
+   網站配色集中管理
+   =========================== */
+:root {
+  /* 主要背景色 */
+  --color-bg-main: #FFFFFF;
+  
+  /* Navbar 第一層背景 */
+  --color-navbar-layer1: #FFFFFF;
+  
+  /* Navbar 第二層背景 */
+  --color-navbar-layer2: #86BBE4;
+  
+  /* 頁尾背景 */
+  --color-footer: #FFA312;
+}

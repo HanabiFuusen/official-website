@@ -1,9 +1,8 @@
 {
   "nav": {
-    "home": "Home",
-    "about": "About",
-    "games": "Games",
-    "contact": "Contact"
+    "top": "Top",
+    "news": "News",
+    "games": "Game"
   },
   "home": {
     "title": "HanabiFuusen",

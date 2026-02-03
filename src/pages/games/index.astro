@@ -7,7 +7,7 @@ const games = [
     id: 'game01',
     title: '帶我去地下城吧！！',
     description: '一款刺激的地下城冒險遊戲，探索神秘的地下迷宮，與各種怪物戰鬥，收集珍貴的寶藏！',
-    image: '/images/game01_cover.jpg',
+    image: '/images/game/game01/cover.jpg',
     tags: ['冒險', '地下城'],
   },
 ]
@@ -18,9 +18,9 @@ const games = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-black text-white mb-6" data-i18n="games.title">
+        <h1 class="text-4xl md:text-5xl font-black text-gray-900 mb-6" data-i18n="games.title">
         </h1>
-        <p class="text-xl text-gray-400" data-i18n="games.subtitle">
+        <p class="text-xl text-gray-600" data-i18n="games.subtitle">
         </p>
       </div>
 
@@ -37,8 +37,8 @@ const games = [
         ))}
 
         <!-- Coming Soon Card -->
-        <div class="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 border-dashed">
-          <div class="aspect-video bg-gray-800/50 flex items-center justify-center">
+        <div class="bg-gray-100 rounded-2xl overflow-hidden border border-gray-300 border-dashed">
+          <div class="aspect-video bg-gray-200/50 flex items-center justify-center">
             <div class="text-center">
               <span class="text-4xl mb-2 block">🎮</span>
               <span class="text-gray-500">敬請期待</span>
@@ -46,7 +46,7 @@ const games = [
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-gray-500 mb-2">更多遊戲開發中...</h3>
-            <p class="text-gray-600 text-sm">我們正在努力開發新的遊戲作品</p>
+            <p class="text-gray-500 text-sm">我們正在努力開發新的遊戲作品</p>
           </div>
         </div>
       </div>
