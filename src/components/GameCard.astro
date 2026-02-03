@@ -9,12 +9,16 @@ interface Props {
   leftMemoColor?: string
   rightMemoText?: string
   rightMemoColor?: string
+  haveDetailPage?: boolean
 }
 
-const { title, description, image, href, platforms = [], leftMemoText, leftMemoColor = '#FFE680', rightMemoText, rightMemoColor = '#FFE680' } = Astro.props
+const { title, description, image, href, platforms = [], leftMemoText, leftMemoColor = '#FFE680', rightMemoText, rightMemoColor = '#FFE680', haveDetailPage = true } = Astro.props
+
+const WrapperTag = haveDetailPage ? 'a' : 'div'
+const wrapperProps = haveDetailPage ? { href } : {}
 ---
 
-<a href={href} class="group block relative">
+<WrapperTag {...wrapperProps} class="group block relative">
   <!-- 右側 Memo 便條紙 -->
   {rightMemoText && (
     <div 
@@ -87,4 +91,4 @@ const { title, description, image, href, platforms = [], leftMemoText, leftMemoC
 
     </div>
   </article>
-</a>
+</WrapperTag>

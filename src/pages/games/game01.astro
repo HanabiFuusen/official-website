@@ -11,18 +11,37 @@ if (!game) {
 
 <Layout title={game.titleKey || 'Game'} description={game.descriptionKey || ''}>
   <!-- Hero Section -->
-  <section class="relative min-h-[70vh] pt-16">
-    <div class="absolute inset-0">
+  <section class="pt-34 pb-16 max-w-4xl mx-auto">
+    
+    <!-- Cover Image -->
+    <div class="mb-8 rounded-xl overflow-hidden">
       <img 
         src={game.imgCover}
         alt={game.titleKey || ''}
-        class="w-full h-full object-cover"
+        class="w-full h-auto object-cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-bg-main)] via-[var(--color-bg-main)]/70 to-[var(--color-bg-main)]/30" />
     </div>
 
-    <div class="relative h-full min-h-[70vh] max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-end pb-20">
-      <div class="max-w-3xl">
+    <div class="relative h-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-end">
+      <div>
+
+        <!-- Title and R18 Warning -->
+        <div class="flex items-center justify-between gap-4 mb-6">
+          <h1 class="text-4xl md:text-6xl font-black text-gray-900 leading-tight">
+            {game.titleKey}
+          </h1>
+          
+          {game.r18 && (
+            <div class="flex-shrink-0">
+              <img 
+                src="/images/icon/ja_r18.png" 
+                alt="R18" 
+                class="w-16 h-16"
+              />
+            </div>
+          )}
+        </div>
+
         <!-- Tags -->
         {game.tags && game.tags.length > 0 && (
           <div class="flex flex-wrap gap-2 mb-4">
@@ -54,21 +73,6 @@ if (!game) {
           )}
         </div>
 
-        <!-- R18 Warning -->
-        {game.r18 && (
-          <div class="mb-4 inline-block">
-            <img 
-              src="/images/icon/ja_r18.png" 
-              alt="R18" 
-              class="w-16 h-16"
-            />
-          </div>
-        )}
-
-        <!-- Title -->
-        <h1 class="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
-          {game.titleKey}
-        </h1>
 
         <!-- Description -->
         <p class="text-xl text-gray-800 leading-relaxed mb-6">
@@ -77,22 +81,38 @@ if (!game) {
 
         <!-- Platforms -->
         {game.platforms && game.platforms.length > 0 && (
-          <div class="flex gap-4 mt-6">
-            {game.platforms.includes('steam') && (
-              <div class="inline-flex flex-col items-center gap-1 px-4 py-2 rounded-lg backdrop-blur-sm" style="background-color: var(--color-bg-main); opacity: 0.8;">
-                <svg class="w-10 h-10 text-gray-900" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm9.423-11.375c-1.661 0-3.01 1.35-3.01 3.012s1.347 3.011 3.01 3.011 3.01-1.349 3.01-3.01-1.346-3.012-3.01-3.012zm0 4.772c-.974 0-1.762-.79-1.762-1.762s.789-1.763 1.762-1.763c.971 0 1.762.791 1.762 1.763s-.79 1.762-1.762 1.762z"/>
-                </svg>
-                <span class="text-gray-900 text-xs font-medium">Steam</span>
-              </div>
-            )}
+          <div class="flex items-center justify-between gap-4 mt-6">
+            <div class="flex gap-4">
+              {game.platforms.includes('steam') && (
+                <div class="inline-flex flex-col items-center gap-1 px-4 py-2 rounded-lg backdrop-blur-sm" style="background-color: var(--color-bg-main); opacity: 0.8;">
+                  <svg class="w-10 h-10 text-gray-900" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm9.423-11.375c-1.661 0-3.01 1.35-3.01 3.012s1.347 3.011 3.01 3.011 3.01-1.349 3.01-3.01-1.346-3.012-3.01-3.012zm0 4.772c-.974 0-1.762-.79-1.762-1.762s.789-1.763 1.762-1.763c.971 0 1.762.791 1.762 1.763s-.79 1.762-1.762 1.762z"/>
+                  </svg>
+                  <span class="text-gray-900 text-xs font-medium">Steam</span>
+                </div>
+              )}
 
-            {game.platforms.includes('switch') && (
-              <div class="inline-flex flex-col items-center gap-1 px-4 py-2 rounded-lg backdrop-blur-sm" style="background-color: var(--color-bg-main); opacity: 0.8;">
-                <img src="/images/icon/switch-logo.svg" alt="Switch" class="w-10 h-10" />
-                <span class="text-gray-900 text-xs font-medium">Switch</span>
-              </div>
-            )}
+              {game.platforms.includes('switch') && (
+                <div class="inline-flex flex-col items-center gap-1 px-4 py-2 rounded-lg backdrop-blur-sm" style="background-color: var(--color-bg-main); opacity: 0.8;">
+                  <img src="/images/icon/switch-logo.svg" alt="Switch" class="w-10 h-10" />
+                  <span class="text-gray-900 text-xs font-medium">Switch</span>
+                </div>
+              )}
+            </div>
+
+            <!-- Steam Purchase Button -->
+            <a 
+              href="https://store.steampowered.com/app/1793250"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center gap-2 transition-all duration-300 font-medium"
+              aria-label="在Steam購買"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm9.423-11.375c-1.661 0-3.01 1.35-3.01 3.012s1.347 3.011 3.01 3.011 3.01-1.349 3.01-3.01-1.346-3.012-3.01-3.012zm0 4.772c-.974 0-1.762-.79-1.762-1.762s.789-1.763 1.762-1.763c.971 0 1.762.791 1.762 1.763s-.79 1.762-1.762 1.762z"/>
+              </svg>
+              <span class="text-sm whitespace-nowrap">STEAMで購入</span>
+            </a>
           </div>
         )}
       </div>
@@ -100,9 +120,9 @@ if (!game) {
   </section>
 
   <!-- SubDetails Section 1: 角色 -->
-  <section class="py-20" style="background-color: var(--color-bg-main);">
+  <section class="py-0">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-xl p-8 border border-gray-300" style="background-color: var(--color-bg-main);">
+      <div class="rounded-xl p-8 border border-gray-300 bg-gray-100">
         <!-- 1. SubTitle -->
         <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
           角色
@@ -115,7 +135,7 @@ if (!game) {
             <div class="w-full border-t-2 border-gray-300"></div>
           </div>
           <div class="relative flex justify-center">
-            <span class="px-4 text-sm text-gray-500" style="background-color: var(--color-bg-main);">✦</span>
+            <span class="px-4 text-sm text-gray-500 bg-gray-100">✦</span>
           </div>
         </div>
         
@@ -123,60 +143,60 @@ if (!game) {
         <div class="space-y-12">
           <!-- 角色卡片 1: 尤娜 -->
           <div class="flex flex-col items-center text-center">
-            <div class="mb-4 overflow-hidden rounded-lg">
+            <div class="mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">女主角 - 尤娜</h3>
+              <p class="text-base text-gray-600">CV: 花屋敷やや</p>
+            </div>
+            <div class="overflow-hidden rounded-lg">
               <img 
                 src="/images/game/game01/una2.png" 
                 alt="Yuna" 
                 class="h-auto hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-2">女主角 - 尤娜</h3>
-              <p class="text-base text-gray-600">CV: 花屋敷やや</p>
-            </div>
           </div>
 
           <!-- 角色卡片 2: 夢娜 -->
           <div class="flex flex-col items-center text-center">
-            <div class="mb-4 overflow-hidden rounded-lg">
+            <div class="mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">神秘的大姐姐 - 夢娜</h3>
+              <p class="text-base text-gray-600">CV: 星リルカ</p>
+            </div>
+            <div class="overflow-hidden rounded-lg">
               <img 
                 src="/images/game/game01/mona2.png" 
                 alt="Muna" 
                 class="h-auto hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-2">神秘的大姐姐 - 夢娜</h3>
-              <p class="text-base text-gray-600">CV: 星リルカ</p>
-            </div>
           </div>
 
           <!-- 角色卡片 3: 潘蜜拉 -->
           <div class="flex flex-col items-center text-center">
-            <div class="mb-4 overflow-hidden rounded-lg">
+            <div class="mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">淘氣的「魔王」 - 潘蜜拉</h3>
+              <p class="text-base text-gray-600">CV: 東シヅ</p>
+            </div>
+            <div class="overflow-hidden rounded-lg">
               <img 
                 src="/images/game/game01/pamela2.png" 
                 alt="Pamela" 
                 class="h-auto hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-2">淘氣的「魔王」 - 潘蜜拉</h3>
-              <p class="text-base text-gray-600">CV: 東シヅ</p>
-            </div>
           </div>
 
           <!-- TODO 4 -->
           <div class="flex flex-col items-center text-center">
-            <div class="mb-4 overflow-hidden rounded-lg">
+            <div class="mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">和其他個性豐富的性感女角們</h3>
+            </div>
+            <div class="overflow-hidden rounded-lg">
               <img 
                 src="/images/game/game01/other.png" 
                 alt="Pamela" 
                 class="h-auto hover:scale-105 transition-transform duration-300"
               />
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-2">和其他個性豐富的性感女角們</h3>
             </div>
           </div>
         </div>
@@ -185,9 +205,9 @@ if (!game) {
   </section>
 
   <!-- SubDetails Section 2: GamePlay -->
-  <section class="py-20" style="background-color: var(--color-bg-main);">
+  <section class="py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-xl p-8 border border-gray-300" style="background-color: var(--color-bg-main);">
+      <div class="rounded-xl p-8 border border-gray-300 bg-gray-100">
         <!-- 1. SubTitle -->
         <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
           遊玩內容
@@ -199,7 +219,7 @@ if (!game) {
             <div class="w-full border-t-2 border-gray-300"></div>
           </div>
           <div class="relative flex justify-center">
-            <span class="px-4 text-sm text-gray-500" style="background-color: var(--color-bg-main);">✦</span>
+            <span class="px-4 text-sm text-gray-500 bg-gray-100">✦</span>
           </div>
         </div>
         
@@ -209,7 +229,7 @@ if (!game) {
           <div class="flex flex-col items-center text-center space-y-4">
             <h3 class="text-2xl font-bold text-gray-900">迷宮系統</h3>
             <p class="text-base text-gray-600 max-w-2xl">包含怪物、商店、寶物、休息、劇情事件等隨機生成的地下迷宮；<br>提前預視未來三階層選項，小心地向迷宮最深處前進吧！</p>
-            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+            <div class="overflow-hidden rounded-lg shadow-md mt-0">
               <img src="/images/game/game01/selectiongif.gif" alt="Gameplay 1" class="w-full h-auto hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
@@ -218,7 +238,7 @@ if (!game) {
           <div class="flex flex-col items-center text-center space-y-4">
             <h3 class="text-2xl font-bold text-gray-900">卡牌戰鬥</h3>
             <p class="text-base text-gray-600 max-w-2xl">超過50張卡牌和20種符文，隨心所欲地組合出最強牌組，用它們打倒敵人吧！<br>不小心令尤娜受傷的話…更可能會令她的衣服破掉？！</p>
-            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+            <div class="overflow-hidden rounded-lg shadow-md mt-0">
               <img src="/images/game/game01/battlegif.gif" alt="Gameplay 2" class="w-full h-auto hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
@@ -227,7 +247,7 @@ if (!game) {
           <div class="flex flex-col items-center text-center space-y-4">
             <h3 class="text-2xl font-bold text-gray-900">隨機寶藏</h3>
             <p class="text-base text-gray-600 max-w-2xl">冒險中會隨機獲得各種寶藏，強化女主角的能力，或許你還能抽到最強的寶藏組合，打出驚人傷害！</p>
-            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+            <div class="overflow-hidden rounded-lg shadow-md mt-0">
               <img src="/images/game/game01/treasuregif.gif" alt="Gameplay 3" class="w-full h-auto hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
@@ -236,7 +256,7 @@ if (!game) {
           <div class="flex flex-col items-center text-center space-y-4">
             <h3 class="text-2xl font-bold text-gray-900">精彩劇情及多個結局</h3>
             <p class="text-base text-gray-600 max-w-2xl">享受精彩的冒險故事，結局好壞將由玩家的選擇來決定；<br>解鎖不同的支線事件，完結後更會觸發卡牌附魔，獎勵或是懲罰隨之而來。<br>全日文語音，令你更投入劇情！</p>
-            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+            <div class="overflow-hidden rounded-lg shadow-md mt-0">
               <img src="/images/game/game01/storygif.gif" alt="Gameplay 4" class="w-full h-auto hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
@@ -245,7 +265,7 @@ if (!game) {
           <div class="flex flex-col items-center text-center space-y-4">
             <h3 class="text-2xl font-bold text-gray-900">深淵地城</h3>
             <p class="text-base text-gray-600 max-w-2xl">突破主線故事後將會開啟「深淵地城」，一個讓你盡情享受卡牌對戰的無盡挑戰！<br>只能使用固定的牌組開局，在地城中獲取隨機卡牌進行冒險，考驗你的運氣與實力！</p>
-            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+            <div class="overflow-hidden rounded-lg shadow-md mt-0">
               <video src="/images/game/game01/abyss.webm" class="w-full h-auto hover:scale-105 transition-transform duration-300" autoplay loop muted playsinline></video>
             </div>
           </div>
@@ -254,7 +274,7 @@ if (!game) {
           <div class="flex flex-col items-center text-center space-y-4">
             <h3 class="text-2xl font-bold text-gray-900">難易度調整</h3>
             <p class="text-base text-gray-600 max-w-2xl">在簡單模式下輕鬆享受劇情，或挑戰困難模式考驗自己的實力！<br>三種難易度任君選擇，讓各類玩家都能找到最適合的遊玩方式。</p>
-            <div class="overflow-hidden rounded-lg shadow-md mt-6">
+            <div class="overflow-hidden rounded-lg shadow-md mt-0">
               <img src="/images/game/game01/diff.png" alt="Gameplay 7" class="w-full h-auto hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
@@ -264,9 +284,9 @@ if (!game) {
   </section>
 
   <!-- SubDetails Section 3: 外部支援 -->
-  <section class="py-20" style="background-color: var(--color-bg-main);">
+  <section class="py-0">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-xl p-8 border border-gray-300" style="background-color: var(--color-bg-main);">
+      <div class="rounded-xl p-8 border border-gray-300 bg-gray-100">
         <!-- 1. SubTitle -->
         <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
           外部支援
@@ -278,7 +298,7 @@ if (!game) {
             <div class="w-full border-t-2 border-gray-300"></div>
           </div>
           <div class="relative flex justify-center">
-            <span class="px-4 text-sm text-gray-500" style="background-color: var(--color-bg-main);">✦</span>
+            <span class="px-4 text-sm text-gray-500 bg-gray-100">✦</span>
           </div>
         </div>
         
@@ -294,9 +314,9 @@ if (!game) {
   </section>
 
   <!-- SubDetails Section 4: 概要 -->
-  <section class="py-20" style="background-color: var(--color-bg-main);">
+  <section class="py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-xl p-8 border border-gray-300" style="background-color: var(--color-bg-main);">
+      <div class="rounded-xl p-8 border border-gray-300 bg-gray-100">
         <!-- 1. SubTitle -->
         <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
           概要
@@ -308,7 +328,7 @@ if (!game) {
             <div class="w-full border-t-2 border-gray-300"></div>
           </div>
           <div class="relative flex justify-center">
-            <span class="px-4 text-sm text-gray-500" style="background-color: var(--color-bg-main);">✦</span>
+            <span class="px-4 text-sm text-gray-500 bg-gray-100">✦</span>
           </div>
         </div>
         
@@ -353,9 +373,9 @@ if (!game) {
   </section>
 
   <!-- SubDetails Section 5: Spec -->
-  <section class="py-20" style="background-color: var(--color-bg-main);">
+  <section class="py-0">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-xl p-8 border border-gray-300" style="background-color: var(--color-bg-main);">
+      <div class="rounded-xl p-8 border border-gray-300 bg-gray-100">
         <!-- 1. SubTitle -->
         <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
           最低配備
@@ -367,7 +387,7 @@ if (!game) {
             <div class="w-full border-t-2 border-gray-300"></div>
           </div>
           <div class="relative flex justify-center">
-            <span class="px-4 text-sm text-gray-500" style="background-color: var(--color-bg-main);">✦</span>
+            <span class="px-4 text-sm text-gray-500 bg-gray-100">✦</span>
           </div>
         </div>
         

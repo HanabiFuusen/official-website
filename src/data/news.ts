@@ -12,13 +12,7 @@ export const newsList: NewsItem[] = [
     date: '2026/02/03',
     titleKey: 'news.items.20260203_01.title',
     contentKey: 'news.items.20260203_01.content',
-  },
-  {
-    id: '20260115_01',
-    date: '2026/01/15',
-    titleKey: 'news.items.20260115_01.title',
-    contentKey: 'news.items.20260115_01.content',
-  },
+  }
 ]
 
 // 根據 ID 取得單篇 News
