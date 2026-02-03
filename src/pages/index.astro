@@ -3,12 +3,14 @@ import Layout from '../layouts/Layout.astro'
 import GameCard from '../components/GameCard.astro'
 import { newsList } from '../data/news'
 import { featuredGames, allGames } from '../data/games'
+import { getTranslations, t } from '../i18n'
 
 // 取得最新5筆 News
 const latestNews = newsList.slice(0, 5)
+const trans = getTranslations('zh-TW')
 ---
 
-<Layout title="風船花火">
+<Layout title={t(trans, 'site.title')}>
   <!-- 年齡確認 Overlay -->
   <div id="age-verification-overlay" class="fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm flex items-center justify-center hidden">
     <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md mx-4 text-center">
@@ -134,7 +136,7 @@ const latestNews = newsList.slice(0, 5)
     <div class="max-w-4xl mx-auto px-6">
       <div class="relative mb-8">
         <span class="absolute left-0 right-0 h-3.5" style="top: calc(25px); background-color: var(--color-navbar-layer2); box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.1);"></span>
-        <h2 class="relative text-3xl md:text-4xl font-bold text-gray-900 z-10 pl-3"><span data-i18n="home.moreGames">GAMES</span><span class="text-[16px] ml-2 inline-block relative -top-[calc(13.5px)]">ゲーム</span></h2>
+        <h2 class="relative text-3xl md:text-4xl font-bold text-gray-900 z-10 pl-3">GAMES<span class="text-[16px] ml-2 inline-block relative -top-[calc(13.5px)]">ゲーム</span></h2>
       </div>
       
       <!-- 遊戲卡片網格 -->
@@ -162,7 +164,7 @@ const latestNews = newsList.slice(0, 5)
     <div class="max-w-4xl mx-auto px-6">
       <div class="relative mb-8">
         <span class="absolute left-0 right-0 top-6.5 h-3.5" style="background-color: var(--color-navbar-layer2); box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.1);"></span>
-        <h2 class="relative text-3xl md:text-4xl font-bold text-gray-900 z-10 pl-3"><span data-i18n="news.title">NEWS</span><span class="text-[16px] ml-2 inline-block relative -top-[calc(13.5px)]">ニュース</span></h2>
+        <h2 class="relative text-3xl md:text-4xl font-bold text-gray-900 z-10 pl-3">NEWS<span class="text-[16px] ml-2 inline-block relative -top-[calc(13.5px)]">ニュース</span></h2>
       </div>
       
       <!-- News 列表 -->

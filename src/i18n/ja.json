@@ -7,6 +7,9 @@
     "games": "Game",
     "gamesDescr": "ゲーム作品"
   },
+  "site": {
+    "title": "花火風船"
+  },
   "home": {
     "title": "花火風船",
     "featuredGame": {
@@ -14,7 +17,11 @@
       "description": "創造性と楽しさに満ちた冒険ゲーム",
       "playNow": "今すぐプレイ"
     },
-    "moreGames": "その他のゲーム"
+    "moreGames": "その他のゲーム",
+    "twitter": {
+      "title": "Twitter",
+      "placeholder": "Twitterの埋め込みがここに表示されます"
+    }
   },
   "games": {
     "title": "ゲーム作品",
