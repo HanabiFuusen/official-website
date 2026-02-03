@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "首頁",
+    "about": "關於我們",
+    "games": "遊戲作品",
+    "contact": "聯絡我們"
+  },
+  "home": {
+    "title": "花火風船",
+    "featuredGame": {
+      "title": "花火風船最新作品!!",
+      "description": "一款充滿創意與樂趣的冒險遊戲",
+      "playNow": "立即遊玩"
+    },
+    "moreGames": "更多遊戲作品"
+  },
+  "games": {
+    "title": "遊戲作品",
+    "subtitle": "探索我們精心打造的遊戲世界",
+    "tags": {
+      "adventure": "冒險",
+      "puzzle": "解謎",
+      "dungeon": "地下城"
+    }
+  },
+  "about": {
+    "title": "關於我們",
+    "subtitle": "認識花火風船工作室"
+  },
+  "contact": {
+    "title": "聯絡我們",
+    "subtitle": "有任何問題或合作邀約，歡迎與我們聯繫"
+  },
+  "common": {
+    "learnMore": "了解更多",
+    "viewDetails": "查看詳情",
+    "comingSoon": "即將推出",
+    "next": "下一個"
+  }
+}

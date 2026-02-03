@@ -1,50 +1,139 @@
 ---
 const pathname = Astro.url.pathname
+
 const navLinks = [
-  { href: '/', label: '首頁' },
-  { href: '/about', label: '關於我們' },
-  { href: '/games', label: '遊戲作品' },
-  { href: '/contact', label: '聯絡我們' },
+  { href: '/', labelKey: 'nav.home' },
+  { href: '/about', labelKey: 'nav.about' },
+  { href: '/games', labelKey: 'nav.games' },
+  { href: '/contact', labelKey: 'nav.contact' },
+]
+
+const socialLinks = [
+  { 
+    href: 'https://twitter.com/hanabifuusen', 
+    label: 'X',
+    icon: 'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'
+  },
+  { 
+    href: 'https://instagram.com/hanabifuusen', 
+    label: 'Instagram',
+    icon: 'M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01M7.5 2h9a5.5 5.5 0 015.5 5.5v9a5.5 5.5 0 01-5.5 5.5h-9A5.5 5.5 0 012 16.5v-9A5.5 5.5 0 017.5 2z'
+  },
+  { 
+    href: 'https://facebook.com/hanabifuusen', 
+    label: 'Facebook',
+    icon: 'M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z'
+  },
+]
+
+const languages = [
+  { code: 'zh-TW', label: '繁中', flag: '🇹🇼' },
+  { code: 'en', label: 'EN', flag: '🇺🇸' },
+  { code: 'ja', label: '日本語', flag: '🇯🇵' },
 ]
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-gray-950/90 backdrop-blur-md border-b border-gray-800">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 group">
-        <img src="/images/logo.png" alt="HanabiFuusen" class="h-10 w-auto transition-transform group-hover:scale-105" />
+<nav class="fixed top-0 left-0 right-0 z-50 bg-gray-950/95 backdrop-blur-md border-b border-gray-800">
+  <div class="max-w-full mx-auto">
+    <!-- 第一層：Logo 和社群媒體 -->
+    <div class="flex items-center justify-between h-24 border-b border-gray-800/50  px-4 sm:px-6 lg:px-8" style="background-color: #FFFFFF;">
+      <!-- 左側空白 (用於保持 logo 居中) -->
+      <div class="flex-1 hidden md:block"></div>
+      
+      <!-- 中間 Logo -->
+      <a href="/" class="flex flex-col items-center justify-center group">
+        <img src="/images/logo.png" alt="HanabiFuusen" class="h-12 w-auto transition-transform group-hover:scale-105 mb-1" />
+        <span class="text-xs font-semibold text-gray-400 group-hover:text-pink-400 transition-colors tracking-wider">HANABI FUUSEN</span>
       </a>
 
-      <!-- Desktop Navigation -->
-      <ul class="hidden md:flex items-center gap-8">
+      <!-- 右側區域 -->
+      <div class="flex-1 flex items-center justify-end gap-4">
+        <!-- 社群媒體圖示 -->
+        {socialLinks.map((social) => (
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-400 hover:text-pink-400 transition-colors"
+            aria-label={social.label}
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d={social.icon} />
+            </svg>
+          </a>
+        ))}
+        
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden p-2 text-gray-300 hover:text-white focus:outline-none"
+          aria-label="開啟選單"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 第二層：導航連結和語言切換 -->
+    <div class="hidden md:flex items-center justify-between h-12 px-4" style="background-color: #86BBE4;">
+      <!-- 左側空白保持居中 -->
+      <div class="flex-1"></div>
+      
+      <!-- 中間導航連結 -->
+      <ul class="flex items-center gap-3">
         {navLinks.map((link) => (
           <li>
             <a
               href={link.href}
               class:list={[
-                'text-sm font-medium transition-colors hover:text-pink-400',
+                'block px-6 py-2 text-sm font-medium transition-all rounded-lg border-2',
                 pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
-                  ? 'text-pink-400'
-                  : 'text-gray-300',
+                  ? 'bg-pink-500/20 text-pink-400 border-pink-500/50'
+                  : 'bg-gray-800/30 text-gray-300 border-gray-700/50 hover:bg-gray-800/50 hover:border-gray-600 hover:text-white',
               ]}
+              data-i18n={link.labelKey}
             >
-              {link.label}
             </a>
           </li>
         ))}
       </ul>
+      
+      <!-- 右側語言切換 -->
+      <div class="flex-1 flex justify-end">
+        <div class="relative">
+          <button
+            id="language-btn"
+            class="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors"
+            aria-label="選擇語言"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+            </svg>
+            <span id="current-language">繁中</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
 
-      <!-- Mobile Menu Button -->
-      <button
-        id="mobile-menu-btn"
-        class="md:hidden p-2 text-gray-300 hover:text-white focus:outline-none"
-        aria-label="開啟選單"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+          <!-- 語言下拉選單 -->
+          <div
+            id="language-menu"
+            class="hidden absolute right-0 mt-2 w-40 bg-gray-900 rounded-lg shadow-xl border border-gray-800 overflow-hidden z-50"
+          >
+            {languages.map((lang) => (
+              <button
+                data-lang={lang.code}
+                class="language-option w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-white transition-colors text-left"
+              >
+                <span class="text-xl">{lang.flag}</span>
+                <span>{lang.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Mobile Navigation -->
@@ -60,21 +149,108 @@ const navLinks = [
                   ? 'bg-pink-500/20 text-pink-400'
                   : 'text-gray-300 hover:bg-gray-800 hover:text-white',
               ]}
+              data-i18n={link.labelKey}
             >
-              {link.label}
             </a>
           </li>
         ))}
+        
+        <!-- 移動版語言選項 -->
+        <li class="border-t border-gray-800 mt-2 pt-2">
+          <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase">語言 / Language</div>
+          {languages.map((lang) => (
+            <button
+              data-lang={lang.code}
+              class="mobile-language-option w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-colors text-left cursor-pointer"
+            >
+              <span class="text-xl">{lang.flag}</span>
+              <span>{lang.label}</span>
+            </button>
+          ))}
+        </li>
       </ul>
     </div>
   </div>
 </nav>
 
 <script>
+  import { updateContent } from '../scripts/i18n'
+  
   const menuBtn = document.getElementById('mobile-menu-btn')
   const mobileMenu = document.getElementById('mobile-menu')
+  const languageBtn = document.getElementById('language-btn')
+  const languageMenu = document.getElementById('language-menu')
+  const currentLanguageSpan = document.getElementById('current-language')
+  const languageOptions = document.querySelectorAll('.language-option')
 
+  // Mobile menu toggle
   menuBtn?.addEventListener('click', () => {
     mobileMenu?.classList.toggle('hidden')
   })
+
+  // Language menu toggle
+  languageBtn?.addEventListener('click', (e) => {
+    e.stopPropagation()
+    languageMenu?.classList.toggle('hidden')
+  })
+
+  // Close language menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!languageBtn?.contains(e.target as Node) && !languageMenu?.contains(e.target as Node)) {
+      languageMenu?.classList.add('hidden')
+    }
+  })
+
+  // Load saved language preference from URL or localStorage
+  const urlParams = new URLSearchParams(window.location.search)
+  const urlLang = urlParams.get('lang')
+  const savedLang = urlLang || localStorage.getItem('language') || 'zh-TW'
+  
+  const langLabels: Record<string, string> = {
+    'zh-TW': '繁中',
+    'en': 'EN',
+    'ja': '日本語',
+  }
+  if (currentLanguageSpan) {
+    currentLanguageSpan.textContent = langLabels[savedLang] || '繁中'
+  }
+
+  // Update localStorage if URL has lang parameter
+  if (urlLang) {
+    localStorage.setItem('language', urlLang)
+  }
+
+  // Language selection (desktop)
+  languageOptions.forEach((option) => {
+    option.addEventListener('click', () => {
+      const langCode = option.getAttribute('data-lang')
+      if (langCode && currentLanguageSpan) {
+        localStorage.setItem('language', langCode)
+        
+        // Update URL with language parameter and reload
+        const url = new URL(window.location.href)
+        url.searchParams.set('lang', langCode)
+        window.location.href = url.toString()
+      }
+    })
+  })
+  
+  // Language selection (mobile)
+  const mobileLangOptions = document.querySelectorAll('.mobile-language-option')
+  mobileLangOptions.forEach((option) => {
+    option.addEventListener('click', () => {
+      const langCode = option.getAttribute('data-lang')
+      if (langCode) {
+        localStorage.setItem('language', langCode)
+        
+        // Update URL with language parameter and reload
+        const url = new URL(window.location.href)
+        url.searchParams.set('lang', langCode)
+        window.location.href = url.toString()
+      }
+    })
+  })
+  
+  // Update navigation text with translations
+  updateContent()
 </script>

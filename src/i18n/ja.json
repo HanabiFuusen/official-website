@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "about": "私たちについて",
+    "games": "ゲーム作品",
+    "contact": "お問い合わせ"
+  },
+  "home": {
+    "title": "花火風船",
+    "featuredGame": {
+      "title": "花火風船の最新作品!!",
+      "description": "創造性と楽しさに満ちた冒険ゲーム",
+      "playNow": "今すぐプレイ"
+    },
+    "moreGames": "その他のゲーム"
+  },
+  "games": {
+    "title": "ゲーム作品",
+    "subtitle": "丁寧に作り上げたゲームの世界を探索しよう",
+    "tags": {
+      "adventure": "冒険",
+      "puzzle": "パズル",
+      "dungeon": "ダンジョン"
+    }
+  },
+  "about": {
+    "title": "私たちについて",
+    "subtitle": "花火風船スタジオを知る"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "ご質問やコラボレーションのご依頼はお気軽にご連絡ください"
+  },
+  "common": {
+    "learnMore": "詳しく見る",
+    "viewDetails": "詳細を見る",
+    "comingSoon": "近日公開",
+    "next": "次へ"
+  }
+}

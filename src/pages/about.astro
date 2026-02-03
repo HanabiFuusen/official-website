@@ -2,16 +2,14 @@
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="關於我們" description="認識 HanabiFuusen 遊戲開發工作室">
+<Layout title="關於我們" description="認識花火風船工作室">
   <section class="pt-32 pb-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-black text-white mb-6">
-          關於我們
+        <h1 class="text-4xl md:text-5xl font-black text-white mb-6" data-i18n="about.title">
         </h1>
-        <p class="text-xl text-gray-400">
-          創造令人難忘的遊戲體驗
+        <p class="text-xl text-gray-400" data-i18n="about.subtitle">
         </p>
       </div>
 
@@ -70,3 +68,8 @@ import Layout from '../layouts/Layout.astro'
     </div>
   </section>
 </Layout>
+
+<script>
+  import { updateContent } from '../scripts/i18n'
+  updateContent()
+</script>

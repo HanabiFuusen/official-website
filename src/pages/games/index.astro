@@ -1,6 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import GameCard from '../components/GameCard.astro'
+import Layout from '../../layouts/Layout.astro'
+import GameCard from '../../components/GameCard.astro'
 
 const games = [
   {
@@ -18,11 +18,9 @@ const games = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-black text-white mb-6">
-          遊戲作品
+        <h1 class="text-4xl md:text-5xl font-black text-white mb-6" data-i18n="games.title">
         </h1>
-        <p class="text-xl text-gray-400">
-          探索我們精心打造的遊戲世界
+        <p class="text-xl text-gray-400" data-i18n="games.subtitle">
         </p>
       </div>
 
@@ -55,3 +53,8 @@ const games = [
     </div>
   </section>
 </Layout>
+
+<script>
+  import { updateContent } from '../../scripts/i18n'
+  updateContent()
+</script>

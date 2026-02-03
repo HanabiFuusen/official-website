@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro'
 
 // Game data - in a real app, this could come from a CMS or database
-const games: Record<string, { 
+interface GameData {
   title: string
   description: string
   longDescription: string
@@ -10,7 +10,9 @@ const games: Record<string, {
   tags: string[]
   features: string[]
   releaseStatus: string
-}> = {
+}
+
+const gamesData: Record<string, GameData> = {
   game01: {
     title: '帶我去地下城吧！！',
     description: '一款刺激的地下城冒險遊戲',
@@ -26,10 +28,89 @@ const games: Record<string, {
     ],
     releaseStatus: '開發中',
   },
+  game02: {
+    title: '遊戲作品 2',
+    description: '即將推出',
+    longDescription: '敬請期待更多精彩內容！',
+    image: '/images/game02_cover.jpg',
+    tags: ['即將推出'],
+    features: ['開發中'],
+    releaseStatus: '規劃中',
+  },
+  game03: {
+    title: '遊戲作品 3',
+    description: '即將推出',
+    longDescription: '敬請期待更多精彩內容！',
+    image: '/images/game03_cover.jpg',
+    tags: ['即將推出'],
+    features: ['開發中'],
+    releaseStatus: '規劃中',
+  },
+  game04: {
+    title: '遊戲作品 4',
+    description: '即將推出',
+    longDescription: '敬請期待更多精彩內容！',
+    image: '/images/game04_cover.jpg',
+    tags: ['即將推出'],
+    features: ['開發中'],
+    releaseStatus: '規劃中',
+  },
+}
+
+// Required for dynamic routes in Astro
+export function getStaticPaths() {
+  const gamesData: Record<string, GameData> = {
+    game01: {
+      title: '帶我去地下城吧！！',
+      description: '一款刺激的地下城冒險遊戲',
+      longDescription: '《帶我去地下城吧！！》是一款結合動作與策略的地下城探索遊戲。玩家將扮演勇敢的冒險者，深入神秘莫測的地下迷宮，面對各種強大的怪物和機關陷阱。在這個充滿危險與寶藏的世界中，你需要運用智慧和勇氣，才能成為真正的地下城征服者！',
+      image: '/images/game01_cover.jpg',
+      tags: ['冒險', '地下城', 'RPG'],
+      features: [
+        '隨機生成的地下城關卡，每次遊玩都有新體驗',
+        '豐富的角色成長系統與技能樹',
+        '多樣化的武器裝備收集',
+        '具挑戰性的 Boss 戰鬥',
+        '精美的像素藝術風格',
+      ],
+      releaseStatus: '開發中',
+    },
+    game02: {
+      title: '遊戲作品 2',
+      description: '即將推出',
+      longDescription: '敬請期待更多精彩內容！',
+      image: '/images/game02_cover.jpg',
+      tags: ['即將推出'],
+      features: ['開發中'],
+      releaseStatus: '規劃中',
+    },
+    game03: {
+      title: '遊戲作品 3',
+      description: '即將推出',
+      longDescription: '敬請期待更多精彩內容！',
+      image: '/images/game03_cover.jpg',
+      tags: ['即將推出'],
+      features: ['開發中'],
+      releaseStatus: '規劃中',
+    },
+    game04: {
+      title: '遊戲作品 4',
+      description: '即將推出',
+      longDescription: '敬請期待更多精彩內容！',
+      image: '/images/game04_cover.jpg',
+      tags: ['即將推出'],
+      features: ['開發中'],
+      releaseStatus: '規劃中',
+    },
+  }
+  
+  return Object.keys(gamesData).map((id) => ({
+    params: { id },
+  }))
 }
 
 const { id } = Astro.params
-const game = id ? games[id] : null
+const game = id ? gamesData[id] : null
 
 if (!game) {
   return Astro.redirect('/games')
