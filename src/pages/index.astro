@@ -2,77 +2,10 @@
 import Layout from '../layouts/Layout.astro'
 import GameCard from '../components/GameCard.astro'
 import { newsList } from '../data/news'
+import { featuredGames, allGames } from '../data/games'
 
 // 取得最新5筆 News
 const latestNews = newsList.slice(0, 5)
-
-const featuredGames = [
-  {
-    id: 'game01',
-    titleKey: 'home.featuredGame.title',
-    descriptionKey: 'home.featuredGame.description',
-    image: '/images/game/game01/cover.png',
-    showR18: true,
-  },
-  {
-    id: 'game02',
-    titleKey: '帶我地下城吧！！',
-    descriptionKey: '敬請期待',
-    image: '/images/game/game02/cover.png',
-    showR18: false,
-  },
-  {
-    id: 'comming_soon',
-    titleKey: 'common.comingSoon',
-    descriptionKey: 'common.comingSoon',
-    image: '/images/game/coming_soon.png',
-    showR18: false,
-  },
-]
-
-const otherGames: Array<{
-  id: string
-  title: string
-  description: string
-  image: string
-  platforms: ('steam' | 'switch')[]
-  leftMemoText?: string
-  leftMemoColor?: string
-  rightMemoText?: string
-  rightMemoColor?: string
-}> = [
-  {
-    id: 'game01',
-    title: '帶我去城下城吧！！',
-    description: '成人向版本',
-    image: '/images/game/game01/cover.png',
-    platforms: ['steam'],
-    leftMemoText: '成人向',
-    leftMemoColor: '#FF9999',
-    rightMemoText : '好評發售中',
-    rightMemoColor : '#FFA500',
-  },
-  {
-    id: 'game02',
-    title: '帶我去城下城吧！！',
-    description: '一般向',
-    image: '/images/game/game02/cover.png',
-    platforms: ['switch'],
-    leftMemoText: '一般向',
-    leftMemoColor: '#99CCFF',
-    rightMemoText : '敬請期待',
-    rightMemoColor : '#FFE680',
-  },
-  {
-    id: 'comming_soon',
-    title: '即將推出',
-    description: '即將推出',
-    image: '/images/game/coming_soon.png',
-    platforms: ['steam'],
-    rightMemoText: '敬請期待',
-    rightMemoColor: '#FFE680',
-  },
-]
 ---
 
 <Layout title="風船花火">
@@ -109,7 +42,7 @@ const otherGames: Array<{
     <div class="relative max-w-4xl mx-auto px-5 overflow-hidden">
       <!-- 輪播視窗 - 堆疊式卡片 -->
       <div id="carousel-container" class="relative aspect-video ">
-        {featuredGames.map((game, index) => (
+        {featuredGames.map((featuredGame, index) => (
           <div 
             class="carousel-slide absolute inset-0 transition-all duration-700 ease-out rounded-xl overflow-hidden"
             data-index={index}
@@ -118,12 +51,12 @@ const otherGames: Array<{
                   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, .3);
                   `}
           >
-            <a href={`/games/${game.id}`} class="block h-full group" style="">
+            <a href={`/games/${featuredGame.game.id}`} class="block h-full group" style="">
               <!-- 背景圖片 -->
               <div class="absolute inset-0">
                 <img 
-                  src={game.image}
-                  alt={game.titleKey}
+                  src={featuredGame.game.imgCover}
+                  alt={featuredGame.game.titleKey}
                   class="w-full h-full object-cover"
                 />
                 <!-- 漸層遮罩 - 讓文字更清晰 -->
@@ -133,7 +66,7 @@ const otherGames: Array<{
                 <div class="carousel-overlay absolute inset-0 bg-black/50 transition-opacity duration-700 pointer-events-none opacity-0"></div>
                 
                 <!-- R18 圖標 -->
-                {game.showR18 && (
+                {featuredGame.game.showR18 && (
                   <div class="absolute bottom-3 right-3 z-10">
                     <img src="/images/icon/ja_r18.png" alt="R18" class="w-16 h-16 opacity-90" />
                   </div>
@@ -145,11 +78,11 @@ const otherGames: Array<{
                 <div class="w-full max-w-4xl mx-auto px-6 pb-0">
 
                   <!-- 遊戲標題 -->
-                  <h1 class="text-4xl md:text-5xl font-black text-white mb-3 leading-tight drop-shadow-2xl" data-i18n={game.titleKey}>
+                  <h1 class="text-4xl md:text-5xl font-black text-white mb-3 leading-tight drop-shadow-2xl" data-i18n={featuredGame.game.titleKey}>
                   </h1>
 
                   <!-- 遊戲描述 -->
-                  <p class="text-lg text-gray-200 mb-6 max-w-2xl drop-shadow-lg" data-i18n={game.descriptionKey}>
+                  <p class="text-lg text-gray-200 mb-6 max-w-2xl drop-shadow-lg" data-i18n={featuredGame.game.descriptionKey}>
                   </p>
                 </div>
               </div>
@@ -206,13 +139,13 @@ const otherGames: Array<{
       
       <!-- 遊戲卡片網格 -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {otherGames.map((game) => (
+        {allGames.map((game) => (
           <GameCard 
-            title={game.title}
-            description={game.description}
-            image={game.image}
+            title={game.titleKey || ''}
+            description={game.descriptionKey || ''}
+            image={game.imgCover}
             href={`/games/${game.id}`}
-            platforms={game.platforms}
+            platforms={game.platforms || []}
             leftMemoText={game.leftMemoText}
             leftMemoColor={game.leftMemoColor}
             rightMemoText={game.rightMemoText}
