@@ -50,96 +50,64 @@ const otherGames = [
 
 <Layout title="花火風船">
   <!-- Hero Section - 大型特色遊戲區域 -->
-  <section class="pt-36 pb-8">
+  <section class="pt-36 pb-8 mx-[150px]">
     <!-- 16:9 遊戲封面輪播 - 外層容器包含箭頭 -->
-    <div class="relative max-w-6xl mx-auto px-20">
-      <!-- 輪播容器 -->
-      <div class="relative">
-        <!-- 中央主要顯示區域 -->
-        <div class="relative aspect-video rounded-xl overflow-hidden z-10" style="box-shadow: 0 -1px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 6px -1px rgb(0 0 0 / 0.4);">
-          {featuredGames.map((game, index) => (
-            <div 
-              class:list={[
-                "carousel-item absolute inset-0 transition-opacity duration-500",
-                index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"
-              ]}
-              data-index={index}
-            >
-              <a href={`/games/${game.id}`} class="block h-full group">
-                <!-- 背景圖片 -->
-                <div class="absolute inset-0">
-                  <img 
-                    src={game.image}
-                    alt={game.titleKey}
-                    class="w-full h-full object-cover"
-                  />
-                  <!-- 漸層遮罩 - 讓文字更清晰 -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                </div>
+    <div class="relative max-w-4xl mx-auto px-20 overflow-hidden">
+      <!-- 輪播視窗 - 堆疊式卡片 -->
+      <div id="carousel-container" class="relative aspect-video ">
+        {featuredGames.map((game, index) => (
+          <div 
+            class="carousel-slide absolute inset-0 transition-all duration-700 ease-out rounded-xl overflow-hidden"
+            data-index={index}
+            style={`z-index: ${index === 0 ? 30 : 10}; transform: ${index === 0 ? 'translateX(0) scale(1)' : index === 1 ? 'translateX(85%) scale(0.9)' : 'translateX(-85%) scale(0.9)'}; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);`}
+          >
+            <a href={`/games/${game.id}`} class="block h-full group">
+              <!-- 背景圖片 -->
+              <div class="absolute inset-0">
+                <img 
+                  src={game.image}
+                  alt={game.titleKey}
+                  class="w-full h-full object-cover"
+                />
+                <!-- 漸層遮罩 - 讓文字更清晰 -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                
+                <!-- 半透明遮罩 - 非中心卡片使用 -->
+                <div class="carousel-overlay absolute inset-0 bg-black/50 transition-opacity duration-700 pointer-events-none opacity-0"></div>
+              </div>
 
-                <!-- 遊戲資訊內容 -->
-                <div class="relative h-full flex items-end">
-                  <div class="w-full max-w-4xl mx-auto px-6 pb-32">
-                    <!-- 標籤 -->
-                    <div class="flex gap-3 mb-6">
-                      {game.tagsKeys.map((tagKey) => (
-                        <span class="px-4 py-2 text-sm font-semibold bg-pink-500/30 text-pink-300 rounded-lg backdrop-blur-md border border-pink-400/30" data-i18n={tagKey}>
-                        </span>
-                      ))}
-                    </div>
-
-                    <!-- 遊戲標題 -->
-                    <h1 class="text-5xl md:text-7xl font-black text-white mb-4 leading-tight drop-shadow-2xl" data-i18n={game.titleKey}>
-                    </h1>
-
-                    <!-- 遊戲描述 -->
-                    <p class="text-xl text-gray-200 mb-8 max-w-2xl drop-shadow-lg" data-i18n={game.descriptionKey}>
-                    </p>
-
-                    <!-- 查看按鈕 -->
-                    <span class="inline-flex items-center gap-3 px-8 py-4 bg-pink-500 hover:bg-pink-600 text-white font-bold text-lg rounded-xl transition-all shadow-xl hover:shadow-2xl hover:scale-105">
-                      <span data-i18n="home.featuredGame.playNow"></span>
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </span>
+              <!-- 遊戲資訊內容 -->
+              <div class="carousel-content relative h-full flex items-end transition-opacity duration-700">
+                <div class="w-full max-w-4xl mx-auto px-6 pb-16">
+                  <!-- 標籤 -->
+                  <div class="flex gap-3 mb-4">
+                    {game.tagsKeys.map((tagKey) => (
+                      <span class="px-4 py-2 text-sm font-semibold bg-pink-500/30 text-pink-300 rounded-lg backdrop-blur-md border border-pink-400/30" data-i18n={tagKey}>
+                      </span>
+                    ))}
                   </div>
+
+                  <!-- 遊戲標題 -->
+                  <h1 class="text-4xl md:text-5xl font-black text-white mb-3 leading-tight drop-shadow-2xl" data-i18n={game.titleKey}>
+                  </h1>
+
+                  <!-- 遊戲描述 -->
+                  <p class="text-lg text-gray-200 mb-6 max-w-2xl drop-shadow-lg" data-i18n={game.descriptionKey}>
+                  </p>
+
+                  <!-- 查看按鈕 -->
+                  <span class="inline-flex items-center gap-3 px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold text-base rounded-xl transition-all shadow-xl hover:shadow-2xl hover:scale-105">
+                    <span data-i18n="home.featuredGame.playNow"></span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </span>
                 </div>
-              </a>
-            </div>
-          ))}
-        </div>
-
-        <!-- 左側預覽圖 -->
-        <div class="carousel-preview-left absolute right-full top-8 bottom-8 w-32 -mr-8 opacity-30 pointer-events-none z-0">
-          {featuredGames.map((game, index) => (
-            <img 
-              src={game.image}
-              alt={game.titleKey}
-              class:list={[
-                "absolute inset-0 w-full h-full object-cover rounded-lg transition-opacity duration-500",
-                index === featuredGames.length - 1 ? "opacity-100" : "opacity-0"
-              ]}
-              data-preview-index={index}
-            />
-          ))}
-        </div>
-
-        <!-- 右側預覽圖 -->
-        <div class="carousel-preview-right absolute left-full top-8 bottom-8 w-32 -ml-8 opacity-30 pointer-events-none z-0">
-          {featuredGames.map((game, index) => (
-            <img 
-              src={game.image}
-              alt={game.titleKey}
-              class:list={[
-                "absolute inset-0 w-full h-full object-cover rounded-lg transition-opacity duration-500",
-                index === 1 ? "opacity-100" : "opacity-0"
-              ]}
-              data-preview-index={index}
-            />
-          ))}
-        </div>
+              </div>
+            </a>
+          </div>
+        ))}
       </div>
 
       <!-- 左右切換按鈕 - 在外面 -->
@@ -207,27 +175,57 @@ const otherGames = [
 
   // Carousel functionality
   let currentIndex = 0
-  const carouselItems = document.querySelectorAll('.carousel-item')
+  const carouselSlides = document.querySelectorAll('.carousel-slide')
   const carouselDots = document.querySelectorAll('.carousel-dot')
   const prevBtn = document.getElementById('carousel-prev')
   const nextBtn = document.getElementById('carousel-next')
-  const totalItems = carouselItems.length
+  const totalItems = carouselSlides.length
 
-  function showSlide(index: number) {
-    // 隱藏所有 slides
-    carouselItems.forEach((item, i) => {
-      if (i === index) {
-        item.classList.remove('opacity-0', 'z-0')
-        item.classList.add('opacity-100', 'z-10')
+  function updateCarousel() {
+    // 更新每張卡片的位置、層級和樣式
+    carouselSlides.forEach((slide, i) => {
+      const overlay = slide.querySelector('.carousel-overlay')
+      const content = slide.querySelector('.carousel-content')
+      
+      // 計算相對位置 (-1 = 左邊, 0 = 中間, 1 = 右邊)
+      let relativePos = i - currentIndex
+      
+      // 處理循環
+      if (relativePos > totalItems / 2) relativePos -= totalItems
+      if (relativePos < -totalItems / 2) relativePos += totalItems
+      
+      const slideEl = slide as HTMLElement
+      
+      if (relativePos === 0) {
+        // 中央卡片 - 最上層，完整大小
+        slideEl.style.transform = 'translateX(0) scale(1)'
+        slideEl.style.zIndex = '30'
+        overlay?.classList.add('opacity-0')
+        content?.classList.remove('opacity-0')
+      } else if (relativePos === 1 || (relativePos === -(totalItems - 1))) {
+        // 右側卡片 - 露出左邊一部分，在中央卡片下面
+        slideEl.style.transform = 'translateX(85%) scale(0.9)'
+        slideEl.style.zIndex = '20'
+        overlay?.classList.remove('opacity-0')
+        content?.classList.add('opacity-0')
+      } else if (relativePos === -1 || (relativePos === (totalItems - 1))) {
+        // 左側卡片 - 露出右邊一部分，在中央卡片下面
+        slideEl.style.transform = 'translateX(-85%) scale(0.9)'
+        slideEl.style.zIndex = '20'
+        overlay?.classList.remove('opacity-0')
+        content?.classList.add('opacity-0')
       } else {
-        item.classList.remove('opacity-100', 'z-10')
-        item.classList.add('opacity-0', 'z-0')
+        // 其他卡片 - 隱藏
+        slideEl.style.transform = relativePos > 0 ? 'translateX(100%) scale(0.8)' : 'translateX(-100%) scale(0.8)'
+        slideEl.style.zIndex = '10'
+        overlay?.classList.remove('opacity-0')
+        content?.classList.add('opacity-0')
       }
     })
 
     // 更新 dots
     carouselDots.forEach((dot, i) => {
-      if (i === index) {
+      if (i === currentIndex) {
         dot.classList.remove('bg-gray-400', 'w-3')
         dot.classList.add('bg-pink-500', 'w-8')
       } else {
@@ -235,59 +233,34 @@ const otherGames = [
         dot.classList.add('bg-gray-400', 'w-3')
       }
     })
-
-    // 更新左側預覽圖（顯示前一張）
-    const leftIndex = index === 0 ? totalItems - 1 : index - 1
-    const leftPreviews = document.querySelectorAll('.carousel-preview-left img')
-    leftPreviews.forEach((img, i) => {
-      if (i === leftIndex) {
-        img.classList.remove('opacity-0')
-        img.classList.add('opacity-100')
-      } else {
-        img.classList.remove('opacity-100')
-        img.classList.add('opacity-0')
-      }
-    })
-
-    // 更新右側預覽圖（顯示後一張）
-    const rightIndex = index === totalItems - 1 ? 0 : index + 1
-    const rightPreviews = document.querySelectorAll('.carousel-preview-right img')
-    rightPreviews.forEach((img, i) => {
-      if (i === rightIndex) {
-        img.classList.remove('opacity-0')
-        img.classList.add('opacity-100')
-      } else {
-        img.classList.remove('opacity-100')
-        img.classList.add('opacity-0')
-      }
-    })
-
-    currentIndex = index
   }
 
   // 上一個按鈕
   prevBtn?.addEventListener('click', () => {
-    const newIndex = currentIndex === 0 ? carouselItems.length - 1 : currentIndex - 1
-    showSlide(newIndex)
+    currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1
+    updateCarousel()
   })
 
   // 下一個按鈕
   nextBtn?.addEventListener('click', () => {
-    const newIndex = currentIndex === carouselItems.length - 1 ? 0 : currentIndex + 1
-    showSlide(newIndex)
+    currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1
+    updateCarousel()
   })
 
   // Dot 點擊
   carouselDots.forEach((dot) => {
     dot.addEventListener('click', () => {
-      const index = parseInt(dot.getAttribute('data-index') || '0')
-      showSlide(index)
+      currentIndex = parseInt(dot.getAttribute('data-index') || '0')
+      updateCarousel()
     })
   })
 
+  // 初始化
+  updateCarousel()
+
   // 自動輪播（可選）
   // setInterval(() => {
-  //   const newIndex = currentIndex === carouselItems.length - 1 ? 0 : currentIndex + 1
-  //   showSlide(newIndex)
+  //   currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1
+  //   updateCarousel()
   // }, 5000)
 </script>
