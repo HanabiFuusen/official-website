@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { newsList, getNewsById } from '../../data/news'
+
+export function getStaticPaths() {
+  return newsList.map((news) => ({
+    params: { id: news.id },
+  }))
+}
+
+const { id } = Astro.params
+const news = getNewsById(id)
+
+if (!news) {
+  return Astro.redirect('/news')
+}
+---
+
+<Layout title="News">
+  <div class="pt-40 pb-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 返回按鈕 -->
+      <a 
+        href="/news" 
+        class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span data-i18n="news.backToList">返回列表</span>
+      </a>
+
+      <!-- News 詳細內容 -->
+      <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+        <div class="p-8">
+          <!-- 日期 -->
+          <time class="text-sm text-gray-500 mb-4 block">{news.date}</time>
+
+          <!-- 標題 -->
+          <h1 
+            class="text-3xl font-bold text-gray-900 mb-8"
+            data-i18n={news.titleKey}
+          >
+          </h1>
+
+          <!-- 分隔線 -->
+          <hr class="border-gray-200 mb-8" />
+
+          <!-- 內容 -->
+          <div 
+            class="prose prose-lg max-w-none text-gray-700 space-y-4"
+            data-i18n-html={news.contentKey}
+          />
+        </div>
+      </article>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { updateContent } from '../../scripts/i18n'
+  updateContent()
+</script>

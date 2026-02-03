@@ -1,34 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import { newsList } from '../data/news'
 ---
 
 <Layout title="News">
   <div class="pt-40 pb-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold text-gray-900 mb-4" data-i18n="news.title">News</h1>
-      <p class="text-lg text-gray-600 mb-12" data-i18n="news.subtitle">最新消息與更新</p>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-8" data-i18n="news.title">News</h1>
       
       <!-- News List -->
-      <div class="space-y-8">
-        <!-- News Item 1 -->
-        <article class="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:border-gray-300 transition-colors">
-          <div class="flex items-center gap-4 mb-4">
-            <span class="text-sm text-gray-500">2026/02/03</span>
-            <span class="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full">更新</span>
-          </div>
-          <h2 class="text-xl font-bold text-gray-900 mb-2">網站正式上線</h2>
-          <p class="text-gray-600">花火風船官方網站正式上線！歡迎大家來訪。</p>
-        </article>
-        
-        <!-- News Item 2 (placeholder) -->
-        <article class="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:border-gray-300 transition-colors">
-          <div class="flex items-center gap-4 mb-4">
-            <span class="text-sm text-gray-500">2026/01/15</span>
-            <span class="px-3 py-1 text-xs font-medium bg-pink-100 text-pink-700 rounded-full">公告</span>
-          </div>
-          <h2 class="text-xl font-bold text-gray-900 mb-2">新遊戲開發中</h2>
-          <p class="text-gray-600">我們正在開發全新的遊戲作品，敬請期待！</p>
-        </article>
+      <div class="border border-gray-200 rounded-xl overflow-hidden bg-white">
+        {newsList.map((news, index) => (
+          <a 
+            href={`/news/${news.id}`}
+            class:list={[
+              "flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors group",
+              index !== newsList.length - 1 && "border-b border-gray-200"
+            ]}
+          >
+            <!-- 日期 -->
+            <time class="text-sm text-gray-500 shrink-0 w-24">{news.date}</time>
+            
+            <!-- 標題 -->
+            <h2 
+              class="text-gray-900 group-hover:text-pink-600 transition-colors flex-1 truncate"
+              data-i18n={news.titleKey}
+            >
+            </h2>
+            
+            <!-- 箭頭 -->
+            <svg 
+              class="w-5 h-5 text-gray-400 group-hover:text-pink-500 transition-colors shrink-0" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ))}
       </div>
     </div>
   </div>

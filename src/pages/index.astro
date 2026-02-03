@@ -1,6 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import GameCard from '../components/GameCard.astro'
+import { newsList } from '../data/news'
+
+// 取得最新5筆 News
+const latestNews = newsList.slice(0, 5)
 
 const featuredGames = [
   {
@@ -18,39 +22,48 @@ const featuredGames = [
     image: '/images/game/game02/cover.png',
   },
   {
-    id: 'game03',
+    id: 'comming_soon',
     titleKey: 'common.comingSoon',
     descriptionKey: 'common.comingSoon',
     tagsKeys: [],
-    image: '/images/game/comming_soon.png',
+    image: '/images/game/coming_soon.png',
   },
 ]
 
-const otherGames = [
+const otherGames: Array<{
+  id: string
+  title: string
+  description: string
+  image: string
+  platforms: ('steam' | 'switch')[]
+}> = [
+  {
+    id: 'game01',
+    title: '帶我去城下城吧！！',
+    description: '成人向版本',
+    image: '/images/game/game01/cover.png',
+    platforms: ['steam'],
+  },
   {
     id: 'game02',
-    title: '遊戲作品 2',
-    description: '即將推出',
-    image: '/images/game02_cover.jpg',
+    title: '帶我去城下城吧！！',
+    description: '一般向',
+    image: '/images/game/game02/cover.png',
+    platforms: ['switch'],
   },
   {
-    id: 'game03',
-    title: '遊戲作品 3',
+    id: 'comming_soon',
+    title: '即將推出',
     description: '即將推出',
-    image: '/images/game03_cover.jpg',
-  },
-  {
-    id: 'game04',
-    title: '遊戲作品 4',
-    description: '即將推出',
-    image: '/images/game04_cover.jpg',
+    image: '/images/game/coming_soon.png',
+    platforms: ['steam'],
   },
 ]
 ---
 
-<Layout title="花火風船">
+<Layout title="風船花火">
   <!-- Hero Section - 大型特色遊戲區域 -->
-  <section class="pt-36 pb-8 max-w-4xl mx-auto">
+  <section class="pt-34 pb-0 max-w-4xl mx-auto">
     <!-- 16:9 遊戲封面輪播 - 外層容器包含箭頭 -->
     <div class="relative max-w-4xl mx-auto px-5 overflow-hidden">
       <!-- 輪播視窗 - 堆疊式卡片 -->
@@ -59,9 +72,12 @@ const otherGames = [
           <div 
             class="carousel-slide absolute inset-0 transition-all duration-700 ease-out rounded-xl overflow-hidden"
             data-index={index}
-            style={`z-index: ${index === 0 ? 30 : 10}; transform: ${index === 0 ? 'translateX(0) scale(1)' : index === 1 ? 'translateX(85%) scale(0.9)' : 'translateX(-85%) scale(0.9)'}; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);`}
+            style={`z-index: ${index === 0 ? 30 : 10}; 
+                  transform: ${index === 0 ? 'translateX(0) scale(1)' : index === 1 ? 'translateX(85%) scale(0.9)' : 'translateX(-85%) scale(0.9)'};
+                  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, .3);
+                  `}
           >
-            <a href={`/games/${game.id}`} class="block h-full group">
+            <a href={`/games/${game.id}`} class="block h-full group" style="">
               <!-- 背景圖片 -->
               <div class="absolute inset-0">
                 <img 
@@ -149,10 +165,12 @@ const otherGames = [
   </section>
 
   <!-- 其他遊戲區域 -->
-  <section class="py-16">
+  <section class="pt-8 pb-10">
     <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12" data-i18n="home.moreGames">
-      </h2>
+      <div class="relative mb-8">
+        <span class="absolute left-0 right-0 h-3.5" style="top: calc(25px); background-color: var(--color-navbar-layer2); box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.1);"></span>
+        <h2 class="relative text-3xl md:text-4xl font-bold text-gray-900 z-10 pl-3"><span data-i18n="home.moreGames">GAMES</span><span class="text-[16px] ml-2 inline-block relative -top-[calc(13.5px)]">ゲーム</span></h2>
+      </div>
       
       <!-- 遊戲卡片網格 -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -162,7 +180,62 @@ const otherGames = [
             description={game.description}
             image={game.image}
             href={`/games/${game.id}`}
+            platforms={game.platforms}
           />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- News 區域 -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="relative mb-8">
+        <span class="absolute left-0 right-0 top-6.5 h-3.5" style="background-color: var(--color-navbar-layer2); box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.1);"></span>
+        <div class="relative z-10 flex items-center justify-between">
+          <h2 class="relative text-3xl md:text-4xl font-bold text-gray-900 z-10 pl-3"><span data-i18n="news.title">NEWS</span><span class="text-[16px] ml-2 inline-block relative -top-[calc(13.5px)]">ニュース</span></h2>
+          <a 
+            href="/news" 
+            class="text-pink-500 hover:text-pink-600 font-medium flex items-center gap-1 transition-colors"
+          >
+            <span data-i18n="home.viewAll">查看全部</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- News 列表 -->
+      <div class="border border-gray-200 rounded-xl overflow-hidden bg-white">
+        {latestNews.map((news, index) => (
+          <a 
+            href={`/news/${news.id}`}
+            class:list={[
+              "flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors group",
+              index !== latestNews.length - 1 && "border-b border-gray-200"
+            ]}
+          >
+            <!-- 日期 -->
+            <time class="text-sm text-gray-500 shrink-0 w-24">{news.date}</time>
+            
+            <!-- 標題 -->
+            <h3 
+              class="text-gray-900 group-hover:text-pink-600 transition-colors flex-1 truncate"
+              data-i18n={news.titleKey}
+            >
+            </h3>
+            
+            <!-- 箭頭 -->
+            <svg 
+              class="w-5 h-5 text-gray-400 group-hover:text-pink-500 transition-colors shrink-0" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
         ))}
       </div>
     </div>

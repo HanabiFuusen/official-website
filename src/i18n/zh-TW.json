@@ -5,13 +5,28 @@
     "games": "GAMES"
   },
   "home": {
-    "title": "花火風船",
+    "title": "風船花火",
     "featuredGame": {
       "title": "帶我地下城吧！！",
       "description": "一款充滿創意與樂趣的冒險遊戲",
       "playNow": "立即遊玩"
     },
-    "moreGames": "更多遊戲作品"
+    "moreGames": "GAMES",
+    "viewAll": "查看全部"
+  },
+  "news": {
+    "title": "NEWS",
+    "backToList": "返回列表",
+    "items": {
+      "20260203_01": {
+        "title": "網站正式上線",
+        "content": "<p>風船花火官方網站正式上線！</p><p>歡迎大家來訪，這裡將會發布我們最新的遊戲資訊和開發進度。</p><p>請持續關注我們的動態！</p>"
+      },
+      "20260115_01": {
+        "title": "新遊戲發布預告",
+        "content": "<p>我們很高興地宣布，我們即將發布一款全新的遊戲作品！</p><p>這款遊戲將帶給玩家前所未有的冒險體驗，敬請期待更多詳情！</p>"
+      }
+    }
   },
   "games": {
     "title": "遊戲作品",
@@ -21,14 +36,6 @@
       "puzzle": "解謎",
       "dungeon": "地下城"
     }
-  },
-  "about": {
-    "title": "關於我們",
-    "subtitle": "認識花火風船工作室"
-  },
-  "contact": {
-    "title": "聯絡我們",
-    "subtitle": "有任何問題或合作邀約，歡迎與我們聯繫"
   },
   "common": {
     "learnMore": "了解更多",
