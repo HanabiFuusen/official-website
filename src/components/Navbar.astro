@@ -26,9 +26,9 @@ const socialLinks = [
 ]
 
 const languages = [
-  { code: 'zh-TW', label: '繁中', flag: '🇹🇼' },
-  { code: 'en', label: 'EN', flag: '🇺🇸' },
-  { code: 'ja', label: '日本語', flag: '🇯🇵' },
+  { code: 'zh-TW', label: '繁中' },
+  { code: 'en', label: 'EN' },
+  { code: 'ja', label: '日本語' },
 ]
 ---
 
@@ -130,7 +130,6 @@ const languages = [
                 data-lang={lang.code}
                 class="language-option w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-white transition-colors text-left"
               >
-                <span class="text-xl">{lang.flag}</span>
                 <span>{lang.label}</span>
               </button>
             ))}
@@ -167,7 +166,6 @@ const languages = [
               data-lang={lang.code}
               class="mobile-language-option w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-colors text-left cursor-pointer"
             >
-              <span class="text-xl">{lang.flag}</span>
               <span>{lang.label}</span>
             </button>
           ))}
