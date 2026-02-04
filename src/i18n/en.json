@@ -180,6 +180,23 @@
       "devDetailKey": "",
       "rightMemoTextKey": "Coming Soon"
     }
+  },
+
+  "copyright": {
+    "modalTitle": "About Copyright",
+    "close": "Close",
+    "guidelineTitle": "Copyright Usage Guidelines (HanabiFuusen)",
+    "intro": "Regarding the use of all images, videos, and music data from products (software, merchandise, etc.) developed and sold by HanabiFuusen (hereinafter referred to as 'our company') and published on the official website, we have established the following guidelines.<br>If you wish to use our company's content, please carefully review these guidelines before use.<br>Please note that the content of these guidelines may be changed without prior notice.",
+    "section1Title": "1. About Video Distribution and Posting",
+    "section1Content": "You may post and distribute gameplay videos using the product version (including trial versions) and derivative videos (such as MAD videos) without prior contact if for non-commercial purposes.<br>However, for distribution of scenes containing adult (R-18) content, please comply with the terms of service of each video distribution platform and do so at your own responsibility.",
+    "section2Title": "2. About Image Usage",
+    "section2Content": "Only if you comply with the following precautions, you may freely use images within the scope of personal hobbies (blogs, social media, etc.). Editing such as trimming is also permitted.<br>However, use for commercial purposes and distribution of the materials themselves are strictly prohibited.",
+    "noticeTitle": "＜Precautions for Use＞",
+    "noticeContent": "When using, please indicate that the copyright belongs to our company and that unauthorized reproduction is prohibited.",
+    "exampleTitle": "Example of Copyright Notice:",
+    "exampleContent": "(C) HanabiFuusen<br>※Unauthorized reproduction and duplication of this image is prohibited.",
+    "section3Title": "3. About Music and Audio",
+    "section3Content": "Regarding BGM and audio data used in our company's works, extracting (ripping), copying, or recording and using/publishing the data alone is prohibited.<br>(※Excluding uses that comply with the above '1. About Video Distribution and Posting', such as when it plays as background music in gameplay videos.)"
   }
 
 
