@@ -1,11 +1,11 @@
 {
   "nav": {
     "top": "TOP",
-    "topDescr": "Top",
+    "topDescr": "トップ",
     "news": "NEWS",
-    "newsDescr": "News",
+    "newsDescr": "ニュース",
     "games": "GAMES",
-    "gamesDescr": "Games"
+    "gamesDescr": "ゲーム"
   },
 
   "site": {
