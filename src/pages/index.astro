@@ -162,6 +162,7 @@ const latestNews = newsList.slice(0, 5)
             rightMemoTextKey={game.rightMemoTextKey}
             rightMemoColor={game.rightMemoColor}
             haveDetailPage={game.haveDetailPage}
+            r18={game.r18}
           />
         ))}
       </div>
@@ -326,9 +327,10 @@ const latestNews = newsList.slice(0, 5)
   // 初始化
   updateCarousel()
 
-  // 自動輪播（可選）
-  // setInterval(() => {
-  //   currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1
-  //   updateCarousel()
-  // }, 5000)
+  // 自動輪播
+  setInterval(() => {
+    currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1
+    updateCarousel()
+  }, 3000)
+
 </script>

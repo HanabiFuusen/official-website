@@ -10,9 +10,10 @@ interface Props {
   rightMemoTextKey?: string
   rightMemoColor?: string
   haveDetailPage?: boolean
+  r18?: boolean
 }
 
-const { titleKey, descriptionKey, image, href, platforms = [], leftMemoTextKey, leftMemoColor = '#FFE680', rightMemoTextKey, rightMemoColor = '#FFE680', haveDetailPage = true } = Astro.props
+const { titleKey, descriptionKey, image, href, platforms = [], leftMemoTextKey, leftMemoColor = '#FFE680', rightMemoTextKey, rightMemoColor = '#FFE680', haveDetailPage = true, r18 = false } = Astro.props
 
 const WrapperTag = haveDetailPage ? 'a' : 'div'
 const wrapperProps = haveDetailPage ? { href } : {}
@@ -42,6 +43,13 @@ const wrapperProps = haveDetailPage ? { href } : {}
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-gray-100 via-transparent to-transparent opacity-60" />
+      
+      <!-- R18 圖標 -->
+      {r18 && (
+        <div class="absolute bottom-2 right-2 z-10">
+          <img src="/images/icon/ja_r18.png" alt="R18" class="w-12 h-12 opacity-90" />
+        </div>
+      )}
       
       <!-- 左側 Memo 便條紙 -->
       {leftMemoTextKey && (
