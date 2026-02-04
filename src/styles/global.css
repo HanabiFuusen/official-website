@@ -20,3 +20,12 @@
   /* 頁尾背景 */
   --color-footer: #FFA312;
 }
+
+/* News hover 效果 */
+.group:hover .news-title {
+  color: var(--color-navbar-layer2);
+}
+
+.group:hover .news-arrow {
+  color: var(--color-navbar-layer2);
+}
