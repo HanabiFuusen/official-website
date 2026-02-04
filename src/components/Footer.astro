@@ -4,11 +4,114 @@ const currentYear = new Date().getFullYear()
 
 <footer style="background-color: var(--color-footer);">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-    <div class="flex flex-col items-center gap-6">
+    <div class="flex flex-row items-center justify-center gap-3 flex-wrap">
       <!-- Copyright -->
-      <p class="text-sm text-gray-900 font-medium">
+      <p class="text-xs text-gray-900 font-medium">
         © {currentYear} HanabiFuusen/HANABI NEKO inc. All rights reserved.
       </p>
+      
+      <!-- Copyright Notice Button -->
+      <button
+        id="copyright-notice-btn"
+        class="text-xs text-gray-700 hover:text-gray-900 font-medium underline hover:no-underline transition-all"
+        data-i18n="common.aboutCopyright"
+      >
+      </button>
     </div>
   </div>
 </footer>
+
+<!-- Copyright Notice Modal -->
+<div id="copyright-notice-modal" class="fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm flex items-center justify-center hidden">
+  <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl mx-4 max-h-[80vh] overflow-y-auto">
+    <div class="flex justify-between items-start mb-6">
+      <h2 class="text-2xl font-bold text-gray-900">著作権について</h2>
+      <button
+        id="copyright-close-btn"
+        class="text-gray-400 hover:text-gray-600 transition-colors"
+        aria-label="閉じる"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    
+    <div class="prose prose-sm max-w-none text-gray-700 leading-relaxed space-y-4">
+      <h3 class="text-lg font-bold text-gray-900 mb-3">著作物利用ガイドライン (風船花火)</h3>
+      
+      <p>
+        風船花火（以下、弊社）が開発・販売する製品（ソフトウェア、グッズ等）、および公式サイトに掲載されている全ての画像・映像・音楽データの利用に関しまして、以下の通りガイドラインを定めます。<br>
+        弊社コンテンツの利用をご希望の方は、本ガイドラインを十分にご確認の上、ご利用ください。<br>
+        なお、本ガイドラインの内容は予告なく変更される場合がありますので、予めご了承ください。
+      </p>
+      
+      <h4 class="text-base font-bold text-gray-900 mt-6 mb-2">1. プレイ動画の配信・投稿について</h4>
+      <p>
+        製品版（体験版を含む）を使用したプレイ動画、および二次創作動画（MAD動画等）の投稿・配信につきましては、非営利目的であれば事前の連絡なく行っていただいて構いません。<br>
+        ただし、成人向け（R-18）要素を含むシーンの配信につきましては、各動画配信プラットフォームの利用規約を遵守し、投稿者ご自身の責任において行ってください。
+      </p>
+      
+      <h4 class="text-base font-bold text-gray-900 mt-6 mb-2">2. 画像の利用について</h4>
+      <p>
+        以下の注意事項を遵守していただける場合に限り、個人の趣味の範囲内（ブログ、SNS等）で自由にご利用いただけます。トリミング等の加工も可能です。<br>
+        ただし、営利目的での利用、および素材そのものを配布する行為は固く禁止いたします。
+      </p>
+      
+      <div class="pl-4 border-l-4 border-gray-300 my-3">
+        <p class="font-semibold mb-2">＜利用時の注意事項＞</p>
+        <p>
+          ご利用の際は、著作権が弊社に帰属する旨と、無断転載を禁止する旨を併記してください。
+        </p>
+        <div class="mt-2 p-3 bg-gray-100 rounded">
+          <p class="font-semibold text-sm">著作権表記の例：</p>
+          <p class="text-sm mt-1">
+            (C) 風船花火<br>
+            ※当画像の無断転載・複製を禁じます。
+          </p>
+        </div>
+      </div>
+      
+      <h4 class="text-base font-bold text-gray-900 mt-6 mb-2">3. 音楽・音声について</h4>
+      <p>
+        弊社作品に使用されているBGMや音声データについて、データ単体を抽出（リッピング）、コピー、または録音して使用・公開する行為は禁止いたします。<br>
+        （※プレイ動画の背景音楽として流れる場合など、上記「1. プレイ動画の配信・投稿について」に準ずる利用は除きます。）
+      </p>
+    </div>
+    
+    <div class="mt-6 flex justify-end">
+      <button
+        id="copyright-close-btn-2"
+        class="px-6 py-2 bg-gray-800 hover:bg-gray-900 text-white rounded-lg transition-colors font-medium"
+      >
+        閉じる
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const copyrightBtn = document.getElementById('copyright-notice-btn')
+  const copyrightModal = document.getElementById('copyright-notice-modal')
+  const closeBtn = document.getElementById('copyright-close-btn')
+  const closeBtn2 = document.getElementById('copyright-close-btn-2')
+  
+  copyrightBtn?.addEventListener('click', () => {
+    copyrightModal?.classList.remove('hidden')
+  })
+  
+  closeBtn?.addEventListener('click', () => {
+    copyrightModal?.classList.add('hidden')
+  })
+  
+  closeBtn2?.addEventListener('click', () => {
+    copyrightModal?.classList.add('hidden')
+  })
+  
+  // Close modal when clicking outside
+  copyrightModal?.addEventListener('click', (e) => {
+    if (e.target === copyrightModal) {
+      copyrightModal.classList.add('hidden')
+    }
+  })
+</script>
