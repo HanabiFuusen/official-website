@@ -249,6 +249,7 @@ const latestNews = newsList.slice(0, 5)
   const prevBtn = document.getElementById('carousel-prev')
   const nextBtn = document.getElementById('carousel-next')
   const totalItems = carouselSlides.length
+  let autoplayInterval: number | null = null
 
   function updateCarousel() {
     // 更新每張卡片的位置、層級和樣式
@@ -304,16 +305,36 @@ const latestNews = newsList.slice(0, 5)
     })
   }
 
+  // 啟動自動輪播
+  function startAutoplay() {
+    // 清除現有的計時器
+    if (autoplayInterval !== null) {
+      clearInterval(autoplayInterval)
+    }
+    // 啟動新的計時器
+    autoplayInterval = setInterval(() => {
+      currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1
+      updateCarousel()
+    }, 5000)
+  }
+
+  // 重置自動輪播（用於手動操作後）
+  function resetAutoplay() {
+    startAutoplay()
+  }
+
   // 上一個按鈕
   prevBtn?.addEventListener('click', () => {
     currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1
     updateCarousel()
+    resetAutoplay()
   })
 
   // 下一個按鈕
   nextBtn?.addEventListener('click', () => {
     currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1
     updateCarousel()
+    resetAutoplay()
   })
 
   // Dot 點擊
@@ -321,16 +342,12 @@ const latestNews = newsList.slice(0, 5)
     dot.addEventListener('click', () => {
       currentIndex = parseInt(dot.getAttribute('data-index') || '0')
       updateCarousel()
+      resetAutoplay()
     })
   })
 
   // 初始化
   updateCarousel()
-
-  // 自動輪播
-  setInterval(() => {
-    currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1
-    updateCarousel()
-  }, 3000)
+  startAutoplay()
 
 </script>
