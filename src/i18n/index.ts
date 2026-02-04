@@ -1,13 +1,15 @@
 import zhTW from './zh-TW.json'
 import en from './en.json'
 import ja from './ja.json'
+import dev from './dev.json'
 
-export type Language = 'zh-TW' | 'en' | 'ja'
+export type Language = 'ja' |'zh-TW' | 'en' |  'dev'
 
 export const translations = {
+  'ja': ja,
   'zh-TW': zhTW,
   'en': en,
-  'ja': ja,
+  'dev': dev,
 }
 
 export function getTranslations(lang: Language = 'zh-TW') {

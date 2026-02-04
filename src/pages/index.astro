@@ -3,41 +3,11 @@ import Layout from '../layouts/Layout.astro'
 import GameCard from '../components/GameCard.astro'
 import { newsList } from '../data/news'
 import { featuredGames, allGames } from '../data/games'
-import { getTranslations, t } from '../i18n'
 
 // 取得最新5筆 News
 const latestNews = newsList.slice(0, 5)
-const trans = getTranslations('zh-TW')
 ---
-
-<Layout title={t(trans, 'site.title')}>
-  <!-- 年齡確認 Overlay -->
-  <div id="age-verification-overlay" class="fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm flex items-center justify-center hidden">
-    <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md mx-4 text-center">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">年齢確認</h2>
-      <p class="text-gray-700 mb-2 leading-relaxed">
-        このWebサイトは18歳未満の方には有害な情報を含んでおります。
-      </p>
-      <p class="text-gray-900 font-semibold mb-6 text-lg">
-        あなたは18歳以上ですか？
-      </p>
-      <div class="flex gap-4 justify-center">
-        <button 
-          id="age-yes" 
-          class="px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-lg transition-colors shadow-lg"
-        >
-          はい
-        </button>
-        <button 
-          id="age-no" 
-          class="px-8 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold rounded-lg transition-colors"
-        >
-          いいえ
-        </button>
-      </div>
-    </div>
-  </div>
-
+<Layout titleKey="site.title">
   <!-- Hero Section - 大型特色遊戲區域 -->
   <section class="pt-34 pb-0 max-w-4xl mx-auto">
     <!-- 16:9 遊戲封面輪播 - 外層容器包含箭頭 -->
@@ -53,42 +23,81 @@ const trans = getTranslations('zh-TW')
                   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, .3);
                   `}
           >
-            <a href={`/games/${featuredGame.game.id}`} class="block h-full group" style="">
-              <!-- 背景圖片 -->
-              <div class="absolute inset-0">
-                <img 
-                  src={featuredGame.game.imgCover}
-                  alt={featuredGame.game.titleKey}
-                  class="w-full h-full object-cover"
-                />
-                <!-- 漸層遮罩 - 讓文字更清晰 -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                
-                <!-- 半透明遮罩 - 非中心卡片使用 -->
-                <div class="carousel-overlay absolute inset-0 bg-black/50 transition-opacity duration-700 pointer-events-none opacity-0"></div>
-                
-                <!-- R18 圖標 -->
-                {featuredGame.game.r18 && (
-                  <div class="absolute bottom-3 right-3 z-10">
-                    <img src="/images/icon/ja_r18.png" alt="R18" class="w-16 h-16 opacity-90" />
+            {featuredGame.game.haveDetailPage ? (
+              <a href={`/games/${featuredGame.game.id}`} class="block h-full group" style="">
+                <!-- 背景圖片 -->
+                <div class="absolute inset-0">
+                  <img 
+                    src={featuredGame.game.imgCover}
+                    alt={featuredGame.game.titleKey}
+                    class="w-full h-full object-cover"
+                  />
+                  <!-- 漸層遮罩 - 讓文字更清晰 -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  
+                  <!-- 半透明遮罩 - 非中心卡片使用 -->
+                  <div class="carousel-overlay absolute inset-0 bg-black/50 transition-opacity duration-700 pointer-events-none opacity-0"></div>
+                  
+                  <!-- R18 圖標 -->
+                  {featuredGame.game.r18 && (
+                    <div class="absolute bottom-3 right-3 z-10">
+                      <img src="/images/icon/ja_r18.png" alt="R18" class="w-16 h-16 opacity-90" />
+                    </div>
+                  )}
+                </div>
+
+                <!-- 遊戲資訊內容 -->
+                <div class="carousel-content relative h-full flex items-end transition-opacity duration-700">
+                  <div class="w-full max-w-4xl mx-auto px-6 pb-0">
+
+                    <!-- 遊戲標題 -->
+                    <h1 class="text-2xl md:text-5xl font-black text-white mb-3 leading-tight drop-shadow-2xl" data-i18n={featuredGame.game.titleKey}>
+                    </h1>
+
+                    <!-- 遊戲描述 -->
+                    <p class="hidden md:block text-lg text-gray-200 mb-6 max-w-2xl drop-shadow-lg" data-i18n={featuredGame.game.descriptionKey}>
+                    </p>
                   </div>
-                )}
-              </div>
+                </div>
+              </a>
+            ) : (
+              <div class="block h-full" style="">
+                <!-- 背景圖片 -->
+                <div class="absolute inset-0">
+                  <img 
+                    src={featuredGame.game.imgCover}
+                    alt={featuredGame.game.titleKey}
+                    class="w-full h-full object-cover"
+                  />
+                  <!-- 漸層遮罩 - 讓文字更清晰 -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  
+                  <!-- 半透明遮罩 - 非中心卡片使用 -->
+                  <div class="carousel-overlay absolute inset-0 bg-black/50 transition-opacity duration-700 pointer-events-none opacity-0"></div>
+                  
+                  <!-- R18 圖標 -->
+                  {featuredGame.game.r18 && (
+                    <div class="absolute bottom-3 right-3 z-10">
+                      <img src="/images/icon/ja_r18.png" alt="R18" class="w-16 h-16 opacity-90" />
+                    </div>
+                  )}
+                </div>
 
-              <!-- 遊戲資訊內容 -->
-              <div class="carousel-content relative h-full flex items-end transition-opacity duration-700">
-                <div class="w-full max-w-4xl mx-auto px-6 pb-0">
+                <!-- 遊戲資訊內容 -->
+                <div class="carousel-content relative h-full flex items-end transition-opacity duration-700">
+                  <div class="w-full max-w-4xl mx-auto px-6 pb-0">
 
-                  <!-- 遊戲標題 -->
-                  <h1 class="text-2xl md:text-5xl font-black text-white mb-3 leading-tight drop-shadow-2xl" data-i18n={featuredGame.game.titleKey}>
-                  </h1>
+                    <!-- 遊戲標題 -->
+                    <h1 class="text-2xl md:text-5xl font-black text-white mb-3 leading-tight drop-shadow-2xl" data-i18n={featuredGame.game.titleKey}>
+                    </h1>
 
-                  <!-- 遊戲描述 -->
-                  <p class="hidden md:block text-lg text-gray-200 mb-6 max-w-2xl drop-shadow-lg" data-i18n={featuredGame.game.descriptionKey}>
-                  </p>
+                    <!-- 遊戲描述 -->
+                    <p class="hidden md:block text-lg text-gray-200 mb-6 max-w-2xl drop-shadow-lg" data-i18n={featuredGame.game.descriptionKey}>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </a>
+            )}
           </div>
         ))}
       </div>
@@ -143,14 +152,14 @@ const trans = getTranslations('zh-TW')
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {allGames.map((game) => (
           <GameCard 
-            title={game.titleKey || ''}
-            description={game.descriptionKey || ''}
+            titleKey={game.titleKey || ''}
+            descriptionKey={game.descriptionKey || ''}
             image={game.imgCover}
             href={`/games/${game.id}`}
             platforms={game.platforms || []}
-            leftMemoText={game.leftMemoText}
+            leftMemoTextKey={game.leftMemoTextKey}
             leftMemoColor={game.leftMemoColor}
-            rightMemoText={game.rightMemoText}
+            rightMemoTextKey={game.rightMemoTextKey}
             rightMemoColor={game.rightMemoColor}
             haveDetailPage={game.haveDetailPage}
           />

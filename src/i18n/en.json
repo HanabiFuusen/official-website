@@ -1,3 +1,185 @@
 {
-  
+  "nav": {
+    "top": "TOP",
+    "topDescr": "Top",
+    "news": "NEWS",
+    "newsDescr": "News",
+    "games": "GAMES",
+    "gamesDescr": "Games"
+  },
+
+  "site": {
+    "title": "HanabiFuusen"
+  },
+
+  "home": {
+    "title": "HanabiFuusen",
+    "featuredGame": {
+      "title": "Take Me to the Dungeon!!",
+      "description": "Now Available",
+      "playNow": "Play Now"
+    },
+    "moreGames": "GAMES",
+    "viewAll": "View All"
+  },
+
+  "common": {
+    "learnMore": "Learn More",
+    "viewDetails": "View Details",
+    "comingSoon": "Coming Soon",
+    "next": "Next",
+    "r18Warning": "🔞 Adults Only",
+    "buyOnSteam": "Buy on Steam",
+    "backToGameList": "Back to Game List"
+  },
+
+  "news": {
+    "title": "NEWS",
+    "backToList": "Back to List",
+    "items": {
+      "20260203_01": {
+        "title": "Official Website Launch",
+        "content": "<p>HanabiFuusen's official website is now live!</p><p>Welcome! Here we'll share our latest game updates and development progress.</p><p>Stay tuned for more!</p>"
+      }
+    }
+  },
+
+  "games": {
+    "tags": {
+      "adventure": "Adventure",
+      "puzzle": "Puzzle",
+      "dungeon": "Dungeon",
+      "card": "Card",
+      "rpg": "RPG"
+    },
+    "game01": {
+      "titleKey": "Take Me to the Dungeon!!",
+      "descriptionKey": "\"Take Me to the Dungeon!!\" is an R18 card game where you play as the protagonist, embarking on a thrilling adventure with the lively and adorable heroine Yuna, challenging the 100-floor dungeon together!",
+      "devDetailKey": "Heroine - Yuna (CV: Hanayashiki Yaya)<br>Mysterious Lady - Mona (CV: Hoshi Rilca)<br>Mischievous \"Demon Lord\" - Pamela (CV: Higashi Shizu)<br><br>System Requirements<br>Minimum:<br>OS *: Windows 7+<br>Processor: Core 2+<br>Memory: 2 GB RAM<br>Graphics: HD620+<br>DirectX: Version 9.0c<br>* As of January 1, 2024 (PT), the Steam Client only supports Windows 10 and later versions.",
+      "leftMemoTextKey": "Adults Only",
+      "rightMemoTextKey": "Now Available",
+      "ageVerification": {
+        "title": "Age Verification",
+        "warning": "This website contains content that may be harmful to minors.",
+        "question": "Are you 18 years or older?",
+        "yes": "Yes",
+        "no": "No"
+      },
+      "sections": {
+        "characters": "Characters",
+        "gameplay": "Gameplay",
+        "externalSupport": "External Support",
+        "overview": "Overview",
+        "systemRequirements": "System Requirements"
+      },
+      "characters": {
+        "yuna": {
+          "name": "Heroine - Yuna",
+          "cv": "CV: Hanayashiki Yaya"
+        },
+        "mona": {
+          "name": "Mysterious Lady - Mona",
+          "cv": "CV: Hoshi Rilca"
+        },
+        "pamela": {
+          "name": "Mischievous \"Demon Lord\" - Pamela",
+          "cv": "CV: Higashi Shizu"
+        },
+        "others": {
+          "name": "And Other Charming Female Characters"
+        }
+      },
+      "gameplay": {
+        "dungeon": {
+          "title": "Dungeon System",
+          "description": "Randomly generated underground dungeons with monsters, shops, treasures, rest areas, and story events.<br>Preview the next three floors and carefully advance to the deepest part of the maze!"
+        },
+        "battle": {
+          "title": "Card Battle",
+          "description": "Over 50 cards and 20 runes to freely combine into the strongest deck and defeat enemies!<br>If Yuna gets hurt... her clothes might tear?!"
+        },
+        "treasure": {
+          "title": "Random Treasures",
+          "description": "Randomly acquire various treasures during your adventure to strengthen the heroine. You might even get the ultimate treasure combination to deal massive damage!"
+        },
+        "story": {
+          "title": "Engaging Story & Multiple Endings",
+          "description": "Enjoy an exciting adventure story where endings depend on your choices.<br>Unlock different side events that trigger card enchantments upon completion, bringing rewards or penalties.<br>Fully voiced in Japanese for immersive storytelling!"
+        },
+        "abyss": {
+          "title": "Abyss Dungeon",
+          "description": "After clearing the main story, unlock the \"Abyss Dungeon\" - an endless challenge where you can fully enjoy card battles!<br>Start with a fixed deck and acquire random cards in the dungeon to test your luck and skill!"
+        },
+        "difficulty": {
+          "title": "Difficulty Settings",
+          "description": "Enjoy the story casually in easy mode, or challenge yourself in hard mode!<br>Choose from three difficulty levels so players of all types can find their perfect playstyle."
+        }
+      },
+      "externalSupport": {
+        "lovense": {
+          "title": "Lovense Interactive Support",
+          "description": "Supports Lovense device integration for an enhanced interactive experience in adult scenes!<br>Customize interaction modes in supported scenes to create your own intimate moments.<br>*Requires additional device support."
+        }
+      },
+      "overview": {
+        "name": {
+          "label": "Title",
+          "value": "Take Me to the Dungeon!!"
+        },
+        "platforms": {
+          "label": "Platforms",
+          "value": "Steam PC, Steam Deck"
+        },
+        "releaseDate": {
+          "label": "Release Date",
+          "value": "June 29, 2023"
+        },
+        "languages": {
+          "label": "Languages",
+          "value": "Japanese, Traditional Chinese, English, Simplified Chinese, Korean"
+        },
+        "rating": {
+          "label": "Rating"
+        }
+      },
+      "systemRequirements": {
+        "os": {
+          "label": "OS",
+          "value": "Windows 7+"
+        },
+        "processor": {
+          "label": "Processor",
+          "value": "Core 2+"
+        },
+        "memory": {
+          "label": "Memory",
+          "value": "2 GB RAM"
+        },
+        "graphics": {
+          "label": "Graphics",
+          "value": "HD620+"
+        },
+        "directx": {
+          "label": "DirectX",
+          "value": "Version 9.0c"
+        },
+        "note": "* As of January 1, 2024 (PT), the Steam Client only supports Windows 10 and later versions."
+      }
+    },
+    "game02": {
+      "titleKey": "Take Me to the Dungeon!!",
+      "descriptionKey": "All Ages",
+      "devDetailKey": "An all-ages dungeon exploration game",
+      "leftMemoTextKey": "All Ages",
+      "rightMemoTextKey": "Coming Soon"
+    },
+    "comming_soon": {
+      "titleKey": "New Game in Development",
+      "descriptionKey": "Coming Soon",
+      "devDetailKey": "",
+      "rightMemoTextKey": "Coming Soon"
+    }
+  }
+
+
 }

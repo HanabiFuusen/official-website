@@ -26,9 +26,10 @@ const socialLinks = [
 ]
 
 const languages = [
+  { code: 'ja', label: '日本語' },
   { code: 'zh-TW', label: '繁中' },
   { code: 'en', label: 'EN' },
-  { code: 'ja', label: '日本語' },
+  ...(import.meta.env.DEV ? [{ code: 'dev', label: 'DEV' }] : []),
 ]
 ---
 
@@ -159,7 +160,7 @@ const languages = [
 </nav>
 
 <script>
-  import { updateContent } from '../scripts/i18n'
+  import { updateContent, getCurrentLanguage } from '../scripts/i18n'
   
   const menuBtn = document.getElementById('mobile-menu-btn')
   const mobileMenu = document.getElementById('mobile-menu')
@@ -186,23 +187,17 @@ const languages = [
     }
   })
 
-  // Load saved language preference from URL or localStorage
-  const urlParams = new URLSearchParams(window.location.search)
-  const urlLang = urlParams.get('lang')
-  const savedLang = urlLang || localStorage.getItem('language') || 'zh-TW'
+  // Use getCurrentLanguage from i18n.ts
+  const savedLang = getCurrentLanguage()
   
   const langLabels: Record<string, string> = {
+    'ja': '日本語',
     'zh-TW': '繁中',
     'en': 'EN',
-    'ja': '日本語',
+    'dev': 'DEV',
   }
   if (currentLanguageSpan) {
     currentLanguageSpan.textContent = langLabels[savedLang] || '繁中'
-  }
-
-  // Update localStorage if URL has lang parameter
-  if (urlLang) {
-    localStorage.setItem('language', urlLang)
   }
 
   // Language selection (desktop)

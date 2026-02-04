@@ -41,6 +41,24 @@ export function updateContent() {
       el.textContent = t(key)
     }
   })
+  
+  // Update all elements with data-i18n-html attribute (for HTML content)
+  document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-html')
+    if (key) {
+      el.innerHTML = t(key)
+    }
+  })
+  
+  // Update document title
+  const titleElement = document.querySelector('title[data-i18n-title]')
+  if (titleElement) {
+    const titleKey = titleElement.getAttribute('data-i18n-title')
+    if (titleKey) {
+      const translatedTitle = t(titleKey)
+      document.title = `${translatedTitle} | HanabiFuusen`
+    }
+  }
 }
 
 // Auto-update on page load

@@ -16,7 +16,7 @@ if (!game) {
 }
 ---
 
-<Layout title={game.titleKey || 'Game'} description={game.descriptionKey || ''}>
+<Layout titleKey="site.title">
   <!-- Hero Section -->
   <section class="relative min-h-[70vh] pt-16">
     <div class="absolute inset-0">
@@ -31,9 +31,9 @@ if (!game) {
     <div class="relative h-full min-h-[70vh] max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-end pb-20">
       <div class="max-w-3xl">
         <!-- Tags -->
-        {game.tags && game.tags.length > 0 && (
+        {game.tagKeys && game.tagKeys.length > 0 && (
           <div class="flex flex-wrap gap-2 mb-4">
-            {game.tags.map((tag) => (
+            {game.tagKeys.map((tag) => (
               <span class="px-3 py-1 text-sm font-medium bg-blue-500/20 text-blue-600 rounded-full backdrop-blur-sm border border-blue-400/30">
                 {tag}
               </span>
@@ -43,20 +43,20 @@ if (!game) {
         
         <!-- Memo Tags -->
         <div class="flex flex-wrap gap-2 mb-4">
-          {game.leftMemoText && (
+          {game.leftMemoTextKey && (
             <span 
               class="px-3 py-1 text-sm font-medium text-gray-800 rounded-full backdrop-blur-sm"
               style={`background-color: ${game.leftMemoColor || '#FFE680'}`}
             >
-              {game.leftMemoText}
+              {game.leftMemoTextKey}
             </span>
           )}
-          {game.rightMemoText && (
+          {game.rightMemoTextKey && (
             <span 
               class="px-3 py-1 text-sm font-medium text-gray-800 rounded-full backdrop-blur-sm"
               style={`background-color: ${game.rightMemoColor || '#FFE680'}`}
             >
-              {game.rightMemoText}
+              {game.rightMemoTextKey}
             </span>
           )}
         </div>

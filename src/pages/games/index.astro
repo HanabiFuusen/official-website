@@ -6,22 +6,22 @@ import { allGames } from '../../data/games'
 
 ---
 
-<Layout title="遊戲作品" description="探索 HanabiFuusen 的遊戲作品">
+<Layout titleKey="site.title">
   <section class="pt-34 pb-16 max-w-4xl mx-auto">
     <div class="px-4 sm:px-6 lg:px-8">
       <!-- Games List -->
       <div class="flex flex-col gap-8">
         {allGames.map((game) => (
           <GameLongCard
-            title={game.titleKey || ''}
-            description={game.descriptionKey || ''}
-            devDetail={game.devDetailKey}
+            titleKey={game.titleKey || ''}
+            descriptionKey={game.descriptionKey || ''}
+            devDetailKey={game.devDetailKey}
             image={game.imgCover}
             href={`/games/${game.id}`}
             platforms={game.platforms || []}
-            leftMemoText={game.leftMemoText}
+            leftMemoTextKey={game.leftMemoTextKey}
             leftMemoColor={game.leftMemoColor}
-            rightMemoText={game.rightMemoText}
+            rightMemoTextKey={game.rightMemoTextKey}
             rightMemoColor={game.rightMemoColor}
             r18={game.r18}
             haveDetailPage={game.haveDetailPage}

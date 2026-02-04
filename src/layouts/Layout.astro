@@ -4,11 +4,13 @@ import Navbar from '../components/Navbar.astro'
 import Footer from '../components/Footer.astro'
 
 interface Props {
-  title: string
+  title?: string
+  titleKey?: string
   description?: string
 }
 
-const { title, description = 'HanabiFuusen - 遊戲開發工作室' } = Astro.props
+const { title, titleKey, description = 'HanabiFuusen - 遊戲開發工作室' } = Astro.props
+const pageTitle = title || titleKey || 'HanabiFuusen'
 ---
 
 <!doctype html>
@@ -21,7 +23,7 @@ const { title, description = 'HanabiFuusen - 遊戲開發工作室' } = Astro.pr
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
-    <title>{title} | HanabiFuusen</title>
+    <title data-i18n-title={titleKey}>{pageTitle} | HanabiFuusen</title>
   </head>
   <body class="bg-white text-gray-900 font-sans min-h-screen flex flex-col">
     <Navbar />
@@ -33,7 +35,8 @@ const { title, description = 'HanabiFuusen - 遊戲開發工作室' } = Astro.pr
     <!-- Back to Top Button -->
     <button 
       id="back-to-top"
-      class="fixed bottom-6 right-6 z-40 w-12 h-12 bg-pink-500 hover:bg-pink-600 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300"
+      class="fixed bottom-6 right-6 z-40 w-12 h-12 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300"
+      style="background-color: var(--color-navbar-layer2);"
       aria-label="回到頂部"
     >
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

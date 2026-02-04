@@ -1,49 +1,185 @@
 {
-  "nav": {
-    "top": "Top",
-    "topDescr": "ホーム",
-    "news": "News",
-    "newsDescr": "最新情報",
-    "games": "Game",
-    "gamesDescr": "ゲーム作品"
+  "nav": { 
+    "top": "トップ",
+    "topDescr": "TOP",
+    "news": "ニュース",
+    "newsDescr": "NEWS",
+    "games": "ゲーム",
+    "gamesDescr": "GAMES"
   },
+
   "site": {
-    "title": "花火風船"
+    "title": "風船花火"
   },
+
   "home": {
-    "title": "花火風船",
+    "title": "風船花火",
     "featuredGame": {
-      "title": "花火風船の最新作品!!",
-      "description": "創造性と楽しさに満ちた冒険ゲーム",
+      "title": "連れてって、ダンジョンへ！！",
+      "description": "好評発売中",
       "playNow": "今すぐプレイ"
     },
-    "moreGames": "その他のゲーム",
-    "twitter": {
-      "title": "Twitter",
-      "placeholder": "Twitterの埋め込みがここに表示されます"
-    }
+    "moreGames": "GAMES",
+    "viewAll": "すべて見る"
   },
-  "games": {
-    "title": "ゲーム作品",
-    "subtitle": "丁寧に作り上げたゲームの世界を探索しよう",
-    "tags": {
-      "adventure": "冒険",
-      "puzzle": "パズル",
-      "dungeon": "ダンジョン"
-    }
-  },
-  "about": {
-    "title": "私たちについて",
-    "subtitle": "花火風船スタジオを知る"
-  },
-  "contact": {
-    "title": "お問い合わせ",
-    "subtitle": "ご質問やコラボレーションのご依頼はお気軽にご連絡ください"
-  },
+
   "common": {
-    "learnMore": "詳しく見る",
+    "learnMore": "もっと見る",
     "viewDetails": "詳細を見る",
     "comingSoon": "近日公開",
-    "next": "次へ"
+    "next": "次へ",
+    "r18Warning": "🔞 18歳未満禁止",
+    "buyOnSteam": "STEAMで購入",
+    "backToGameList": "ゲーム一覧に戻る"
+  },
+
+  "news": {
+    "title": "NEWS",
+    "backToList": "一覧に戻る",
+    "items": {
+      "20260203_01": {
+        "title": "ウェブサイト正式オープン",
+        "content": "<p>風船花火公式ウェブサイトが正式にオープンしました！</p><p>ようこそ！こちらでは最新のゲーム情報や開発の進捗状況を発信していきます。</p><p>今後の更新にご期待ください！</p>"
+      }
+    }
+  },
+
+  "games": {
+    "tags": {
+      "adventure": "アドベンチャー",
+      "puzzle": "パズル",
+      "dungeon": "ダンジョン",
+      "card": "カード",
+      "rpg": "RPG"
+    },
+    "game01": {
+      "titleKey": "連れてって、ダンジョンへ！！",
+      "descriptionKey": "≪ダンジョンに連れてって！！≫はR18カードゲーム。ゲーム中、あなたは主人公として、元気でかわいいヒロイン「ユナ」と一緒に刺激的な冒険を繰り出し、１００層のダンジョンを挑戦する！",
+      "devDetailKey": "ヒロイン - ユナ (CV:花屋敷やや)<br>神秘的なお姉さん - モナ (CV:星リルカ)<br>おちゃめな「魔王」 - パメラ (CV:東シヅ)<br><br>システム要件<br>最低:<br>OS *: Windows 7+<br>プロセッサー: Core 2 +<br>メモリー: 2 GB RAM<br>グラフィック: HD620 +<br>DIRECTX: Version 9.0c<br>* 2024年1月1日（PT）以降、SteamクライアントはWindows 10以降のバージョンのみをサポートします。",
+      "leftMemoTextKey": "成人向け",
+      "rightMemoTextKey": "好評発売中！",
+      "ageVerification": {
+        "title": "年齢確認",
+        "warning": "このWebサイトは18歳未満の方には有害な情報を含んでおります。",
+        "question": "あなたは18歳以上ですか？",
+        "yes": "はい",
+        "no": "いいえ"
+      },
+      "sections": {
+        "characters": "キャラクター",
+        "gameplay": "ゲームプレイ",
+        "externalSupport": "外部サポート",
+        "overview": "概要",
+        "systemRequirements": "最低システム要件"
+      },
+      "characters": {
+        "yuna": {
+          "name": "ヒロイン - ユナ",
+          "cv": "CV: 花屋敷やや"
+        },
+        "mona": {
+          "name": "神秘的なお姉さん - モナ",
+          "cv": "CV: 星リルカ"
+        },
+        "pamela": {
+          "name": "おちゃめな「魔王」 - パメラ",
+          "cv": "CV: 東シヅ"
+        },
+        "others": {
+          "name": "セクシーで個性豊かな女性キャラたち"
+        }
+      },
+      "gameplay": {
+        "dungeon": {
+          "title": "ダンジョンシステム",
+          "description": "モンスター、ショップ、アイテム、回復、メインイベントなどランダムで生成される地下ダンジョン、<br>次の三階までの情報を確認し、慎重に迷宮の一番奥へ進もう！"
+        },
+        "battle": {
+          "title": "カードバトル",
+          "description": "５０種類以上のカードと２０種類のスペルを自由に選び、最強のデッキを駆使して、敵を倒そう！"
+        },
+        "treasure": {
+          "title": "ランダムアイテム",
+          "description": "冒険中はランダムでアイテムを獲得し、ヒロインを強化できる。最強のアイテムを引いて、ダメージを限界まで引き上げる！"
+        },
+        "story": {
+          "title": "シナリオとマルチエンディグ",
+          "description": "地下ダンジョンで繰り広げられる冒険譚を楽しんで、エンディングはプレイヤーの選択に左右される。<br>サブイベントを解放して、ストーリーがの終わりに、カードがエンチャントされるが、果たして強くなるのか？！弱くなるのか！？<br>日本語のフルボイスで、没入感マシマシ！"
+        },
+        "abyss": {
+          "title": "アビスダンジョン",
+          "description": "メインストーリークリア後に開放される「アビス」は、カードバトルを存分に楽しめる無限の挑戦ダンジョン！<br>固定デッキでスタートし、ダンジョン内でランダムなカードを入手しながら冒険を進める。運と実力が試される究極の挑戦！"
+        },
+        "difficulty": {
+          "title": "難易度調整",
+          "description": "簡単モードでストーリーを気軽に楽しむか、難しいモードに挑戦して腕試しするか。<br>3つの難易度から選べるので、全てのプレイヤーが自分に合った楽しみ方を見つけられます。"
+        }
+      },
+      "externalSupport": {
+        "lovense": {
+          "title": "Lovenseインタラクティブ対応",
+          "description": "Lovenseデバイスとの連動に対応し、アダルトシーンがより一層インタラクティブに！<br>対応シーンでは独自のインタラクションパターンとリズムをカスタマイズして、あなただけの親密な時間を。。<br>※この機能には専用機器が必要です。。"
+        }
+      },
+      "overview": {
+        "name": {
+          "label": "名称",
+          "value": "連れてって、ダンジョンへ！！"
+        },
+        "platforms": {
+          "label": "対応プラットフォーム",
+          "value": "STEAM PC, STEAMDECK"
+        },
+        "releaseDate": {
+          "label": "発売日",
+          "value": "2023 年 6 月 29 日"
+        },
+        "languages": {
+          "label": "対応言語",
+          "value": "日本語 繁体字中国語 英語 簡体字中国語 韓国語"
+        },
+        "rating": {
+          "label": "分級"
+        }
+      },
+      "systemRequirements": {
+        "os": {
+          "label": "OS",
+          "value": "Windows 7+"
+        },
+        "processor": {
+          "label": "プロセッサー",
+          "value": "Core 2+"
+        },
+        "memory": {
+          "label": "メモリー",
+          "value": "2 GB RAM"
+        },
+        "graphics": {
+          "label": "グラフィックス",
+          "value": "HD620+"
+        },
+        "directx": {
+          "label": "DirectX",
+          "value": "Version 9.0c"
+        },
+        "note": "* 2024年1月1日（PT）以降、SteamクライアントはWindows 10以降のバージョンのみをサポートします。"
+      }
+    },
+    "game02": {
+      "titleKey": "連れてって、ダンジョンへ！！",
+      "descriptionKey": "一般向",
+      "devDetailKey": "全年齢向けのダンジョン探検ゲーム",
+      "leftMemoTextKey": "一般向",
+      "rightMemoTextKey": "ご期待ください"
+    },
+    "comming_soon": {
+      "titleKey": "新作開発中",
+      "descriptionKey": "近日公開",
+      "devDetailKey": "",
+      "rightMemoTextKey": "ご期待ください"
+    }
   }
+
+
 }

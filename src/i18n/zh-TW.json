@@ -7,9 +7,11 @@
     "games": "GAMES",
     "gamesDescr": "ゲーム"
   },
+
   "site": {
     "title": "風船花火"
   },
+
   "home": {
     "title": "風船花火",
     "featuredGame": {
@@ -20,6 +22,17 @@
     "moreGames": "GAMES",
     "viewAll": "查看全部"
   },
+
+  "common": {
+    "learnMore": "了解更多",
+    "viewDetails": "查看詳情",
+    "comingSoon": "即將推出",
+    "next": "下一個",
+    "r18Warning": "🔞 未滿18歲禁止",
+    "buyOnSteam": "STEAMで購入",
+    "backToGameList": "返回遊戲列表"
+  },
+
   "news": {
     "title": "NEWS",
     "backToList": "返回列表",
@@ -30,19 +43,143 @@
       }
     }
   },
+
   "games": {
-    "title": "遊戲作品",
-    "subtitle": "探索我們精心打造的遊戲世界",
     "tags": {
       "adventure": "冒險",
       "puzzle": "解謎",
-      "dungeon": "地下城"
+      "dungeon": "地下城",
+      "card": "卡牌",
+      "rpg": "RPG"
+    },
+    "game01": {
+      "titleKey": "帶我去地下城吧！！",
+      "descriptionKey": "《帶我去地下城吧！！》是一款R18卡牌遊戲，在遊戲中，你將扮演男主角，與活潑可愛的女主角尤娜一起展開一場刺激的冒險之旅，一同挑戰突破地下城100層的極限！",
+      "devDetailKey": "女主角 - 尤娜 (CV:花屋敷やや)<br>神秘的大姐姐 - 夢娜 (CV:星リルカ)<br>淘氣的「魔王」 - 潘蜜拉 (CV:東シヅ)<br><br>系統需求<br>最低配備:<br>作業系統 *: Windows 7+<br>處理器: Core 2 +<br>記憶體: 2 GB 記憶體<br>顯示卡: HD620 +<br>DIRECTX: 版本：9.0c<br>自 2024 年 1 月 1 日（PT）起，Steam 用戶端僅支援 Windows 10 及更新版本。",
+      "leftMemoTextKey": "成人向",
+      "rightMemoTextKey": "好評發售中",
+      "ageVerification": {
+        "title": "年齢確認",
+        "warning": "このWebサイトは18歳未満の方には有害な情報を含んでおります。",
+        "question": "あなたは18歳以上ですか？",
+        "yes": "はい",
+        "no": "いいえ"
+      },
+      "sections": {
+        "characters": "角色",
+        "gameplay": "遊玩內容",
+        "externalSupport": "外部支援",
+        "overview": "概要",
+        "systemRequirements": "最低配備"
+      },
+      "characters": {
+        "yuna": {
+          "name": "女主角 - 尤娜",
+          "cv": "CV: 花屋敷やや"
+        },
+        "mona": {
+          "name": "神秘的大姐姐 - 夢娜",
+          "cv": "CV: 星リルカ"
+        },
+        "pamela": {
+          "name": "淘氣的「魔王」 - 潘蜜拉",
+          "cv": "CV: 東シヅ"
+        },
+        "others": {
+          "name": "和其他個性豐富的性感女角們"
+        }
+      },
+      "gameplay": {
+        "dungeon": {
+          "title": "迷宮系統",
+          "description": "包含怪物、商店、寶物、休息、劇情事件等隨機生成的地下迷宮；<br>提前預視未來三階層選項，小心地向迷宮最深處前進吧！"
+        },
+        "battle": {
+          "title": "卡牌戰鬥",
+          "description": "超過50張卡牌和20種符文，隨心所欲地組合出最強牌組，用它們打倒敵人吧！"
+        },
+        "treasure": {
+          "title": "隨機寶藏",
+          "description": "冒險中會隨機獲得各種寶藏，強化女主角的能力，或許你還能抽到最強的寶藏組合，打出驚人傷害！"
+        },
+        "story": {
+          "title": "精彩劇情及多個結局",
+          "description": "享受精彩的冒險故事，結局好壞將由玩家的選擇來決定；<br>解鎖不同的支線事件，完結後更會觸發卡牌附魔，獎勵或是懲罰隨之而來。<br>全日文語音，令你更投入劇情！"
+        },
+        "abyss": {
+          "title": "深淵地城",
+          "description": "突破主線故事後將會開啟「深淵地城」，一個讓你盡情享受卡牌對戰的無盡挑戰！<br>只能使用固定的牌組開局，在地城中獲取隨機卡牌進行冒險，考驗你的運氣與實力！"
+        },
+        "difficulty": {
+          "title": "難易度調整",
+          "description": "在簡單模式下輕鬆享受劇情，或挑戰困難模式考驗自己的實力！<br>三種難易度任君選擇，讓各類玩家都能找到最適合的遊玩方式。"
+        }
+      },
+      "externalSupport": {
+        "lovense": {
+          "title": "Lovense 互動支援",
+          "description": "支援 Lovense 設備連動，為成人劇情增添全新的互動體驗！<br>在支援的場景中自由設定互動模式，打造專屬於你的親密時光。<br>*此功能需要額外設備支援。"
+        }
+      },
+      "overview": {
+        "name": {
+          "label": "名稱",
+          "value": "帶我到地下城吧!!"
+        },
+        "platforms": {
+          "label": "對應主機",
+          "value": "STEAM PC, STEAMDECK"
+        },
+        "releaseDate": {
+          "label": "發行日期",
+          "value": "2023 年 6 月 29 日"
+        },
+        "languages": {
+          "label": "對應語言",
+          "value": "日文 繁體中文 英文 簡體中文 韓文"
+        },
+        "rating": {
+          "label": "分級"
+        }
+      },
+      "systemRequirements": {
+        "os": {
+          "label": "作業系統",
+          "value": "Windows 7+"
+        },
+        "processor": {
+          "label": "處理器",
+          "value": "Core 2+"
+        },
+        "memory": {
+          "label": "記憶體",
+          "value": "2 GB 記憶體"
+        },
+        "graphics": {
+          "label": "顯示卡",
+          "value": "HD620+"
+        },
+        "directx": {
+          "label": "DirectX",
+          "value": "版本：9.0c"
+        },
+        "note": "* 自 2024 年 1 月 1 日（PT）起，Steam 用戶端僅支援 Windows 10 及更新版本。"
+      }
+    },
+    "game02": {
+      "titleKey": "帶我去地下城吧！！",
+      "descriptionKey": "一般向",
+      "devDetailKey": "適合全年齡的地下城探險遊戲",
+      "leftMemoTextKey": "一般向",
+      "rightMemoTextKey": "敬請期待"
+    },
+    "comming_soon": {
+      "titleKey": "新作開發中",
+      "descriptionKey": "即將推出",
+      "devDetailKey": "",
+      "rightMemoTextKey": "敬請期待"
     }
-  },
-  "common": {
-    "learnMore": "了解更多",
-    "viewDetails": "查看詳情",
-    "comingSoon": "即將推出",
-    "next": "下一個"
   }
+
+
 }

@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import { newsList, getNewsById } from '../../data/news'
-import { getTranslations, t } from '../../i18n'
 
 export function getStaticPaths() {
   return newsList.map((news) => ({
@@ -15,13 +14,9 @@ const news = getNewsById(id)
 if (!news) {
   return Astro.redirect('/news')
 }
-
-const translations = getTranslations('zh-TW')
-const newsTitle = t(translations, news.titleKey)
-const newsContent = t(translations, news.contentKey)
 ---
 
-<Layout title="News">
+<Layout titleKey="site.title">
   <div class="pt-40 pb-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- 返回按鈕 -->
@@ -41,9 +36,8 @@ const newsContent = t(translations, news.contentKey)
           <!-- 日期 -->
           <time class="text-sm text-gray-500 mb-4 block">{news.date}</time>
 
-          <!-- 標題 -->
-          <h1 class="text-3xl font-bold text-gray-900 mb-8">
-            {newsTitle}
+          <!-- 标题 -->
+          <h1 class="text-3xl font-bold text-gray-900 mb-8" data-i18n={news.titleKey}>
           </h1>
 
           <!-- 分隔線 -->
@@ -52,7 +46,7 @@ const newsContent = t(translations, news.contentKey)
           <!-- 內容 -->
           <div 
             class="prose prose-lg max-w-none text-gray-700 space-y-4"
-            set:html={newsContent}
+            data-i18n-html={news.contentKey}
           ></div>
         </div>
       </article>
