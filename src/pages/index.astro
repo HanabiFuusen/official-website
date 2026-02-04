@@ -9,11 +9,11 @@ const latestNews = newsList.slice(0, 5)
 ---
 <Layout titleKey="site.title">
   <!-- Hero Section - 大型特色遊戲區域 -->
-  <section class="pt-34 pb-0 max-w-4xl mx-auto">
+  <section class="pt-34 pb-0 max-w-4xl mx-auto  select-none">
     <!-- 16:9 遊戲封面輪播 - 外層容器包含箭頭 -->
-    <div class="relative max-w-4xl mx-auto px-5 overflow-hidden">
+    <div class="relative max-w-4xl mx-auto px-5 overflow-hidden select-none">
       <!-- 輪播視窗 - 堆疊式卡片 -->
-      <div id="carousel-container" class="relative aspect-video ">
+      <div id="carousel-container" class="relative aspect-video cursor-default">
         {featuredGames.map((featuredGame, index) => (
           <div 
             class="carousel-slide absolute inset-0 transition-all duration-700 ease-out rounded-xl overflow-hidden"
@@ -51,11 +51,11 @@ const latestNews = newsList.slice(0, 5)
                   <div class="w-full max-w-4xl mx-auto px-6 pb-0">
 
                     <!-- 遊戲標題 -->
-                    <h1 class="text-2xl md:text-5xl font-black text-white mb-3 leading-tight drop-shadow-2xl" data-i18n={featuredGame.game.titleKey}>
+                    <h1 class="text-2xl md:text-5xl font-black text-white mb-3 leading-tight drop-shadow-2xl cursor-default" data-i18n={featuredGame.game.titleKey}>
                     </h1>
 
                     <!-- 遊戲描述 -->
-                    <p class="hidden md:block text-lg text-gray-200 mb-6 max-w-2xl drop-shadow-lg" data-i18n={featuredGame.game.descriptionKey}>
+                    <p class="hidden md:block text-lg text-gray-200 mb-6 max-w-2xl drop-shadow-lg cursor-default" data-i18n={featuredGame.game.descriptionKey}>
                     </p>
                   </div>
                 </div>
@@ -88,11 +88,11 @@ const latestNews = newsList.slice(0, 5)
                   <div class="w-full max-w-4xl mx-auto px-6 pb-0">
 
                     <!-- 遊戲標題 -->
-                    <h1 class="text-2xl md:text-5xl font-black text-white mb-3 leading-tight drop-shadow-2xl" data-i18n={featuredGame.game.titleKey}>
+                    <h1 class="text-2xl md:text-5xl font-black text-white mb-3 leading-tight drop-shadow-2xl cursor-default" data-i18n={featuredGame.game.titleKey}>
                     </h1>
 
                     <!-- 遊戲描述 -->
-                    <p class="hidden md:block text-lg text-gray-200 mb-6 max-w-2xl drop-shadow-lg" data-i18n={featuredGame.game.descriptionKey}>
+                    <p class="hidden md:block text-lg text-gray-200 mb-6 max-w-2xl drop-shadow-lg cursor-default" data-i18n={featuredGame.game.descriptionKey}>
                     </p>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ const latestNews = newsList.slice(0, 5)
       <!-- 左右切換按鈕 - 在外面 -->
       <button 
         id="carousel-prev"
-        class="absolute left-1 top-1/2 -translate-y-1/2 z-40 bg-white hover:bg-gray-100 text-gray-800 p-4 rounded-full shadow-lg transition-all hover:scale-110"
+        class="absolute left-1 top-1/2 -translate-y-1/2 z-40 bg-white hover:bg-gray-100 text-gray-800 p-4 rounded-full shadow-lg transition-all hover:scale-110 cursor-pointer"
         aria-label="上一個"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@ const latestNews = newsList.slice(0, 5)
       </button>
       <button 
         id="carousel-next"
-        class="absolute right-1 top-1/2 -translate-y-1/2 z-40 bg-white hover:bg-gray-100 text-gray-800 p-4 rounded-full shadow-lg transition-all hover:scale-110"
+        class="absolute right-1 top-1/2 -translate-y-1/2 z-40 bg-white hover:bg-gray-100 text-gray-800 p-4 rounded-full shadow-lg transition-all hover:scale-110 cursor-pointer"
         aria-label="下一個"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -124,7 +124,7 @@ const latestNews = newsList.slice(0, 5)
     </div>
 
       <!-- Dot Navigation -->
-      <div class="flex justify-center gap-2 mt-6">
+      <div class="flex justify-center gap-2 mt-6 select-none">
         {featuredGames.map((_, index) => (
           <button
             class:list={[
